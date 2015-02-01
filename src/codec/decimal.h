@@ -1,7 +1,7 @@
 #ifndef FAST_SIMPLE_CODEC_DECIMAL_HEADER
 #define FAST_SIMPLE_CODEC_DECIMAL_HEADER
 
-#include<cstdint>
+#include <cstdint>
 
 namespace fast_simple_codec
 {
