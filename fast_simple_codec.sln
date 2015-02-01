@@ -1,0 +1,33 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.31101.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "compiler", "src\compiler\compiler.vcxproj", "{5D8F64E9-530D-4D8C-BB35-B1081CAF237B}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "codec", "src\codec\codec.vcxproj", "{1EECB6AC-4A3C-460E-B098-0EB085739953}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Debug|x64 = Debug|x64
+		Release|Win32 = Release|Win32
+		Release|x64 = Release|x64
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5D8F64E9-530D-4D8C-BB35-B1081CAF237B}.Debug|Win32.ActiveCfg = Debug|x64
+		{5D8F64E9-530D-4D8C-BB35-B1081CAF237B}.Debug|x64.ActiveCfg = Debug|x64
+		{5D8F64E9-530D-4D8C-BB35-B1081CAF237B}.Release|Win32.ActiveCfg = Release|x64
+		{5D8F64E9-530D-4D8C-BB35-B1081CAF237B}.Release|x64.ActiveCfg = Release|x64
+		{5D8F64E9-530D-4D8C-BB35-B1081CAF237B}.Release|x64.Build.0 = Release|x64
+		{1EECB6AC-4A3C-460E-B098-0EB085739953}.Debug|Win32.ActiveCfg = Debug|x64
+		{1EECB6AC-4A3C-460E-B098-0EB085739953}.Debug|x64.ActiveCfg = Debug|x64
+		{1EECB6AC-4A3C-460E-B098-0EB085739953}.Debug|x64.Build.0 = Debug|x64
+		{1EECB6AC-4A3C-460E-B098-0EB085739953}.Release|Win32.ActiveCfg = Release|x64
+		{1EECB6AC-4A3C-460E-B098-0EB085739953}.Release|x64.ActiveCfg = Release|x64
+		{1EECB6AC-4A3C-460E-B098-0EB085739953}.Release|x64.Build.0 = Release|x64
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
