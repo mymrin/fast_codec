@@ -78,6 +78,7 @@ $RECYCLE.BIN/
 *.sdf
 *.ipch
 *.user
+*.opensdf
 Debug
 Release
 boost_1_57_0
