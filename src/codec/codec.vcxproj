@@ -11,6 +11,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="bcd.h" />
     <ClInclude Include="decimal.h" />
     <ClInclude Include="encoder.h" />
     <ClInclude Include="encoder_ascii.h" />
@@ -20,6 +21,7 @@
     <ClInclude Include="nullable_types.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="bcd.cpp" />
     <ClCompile Include="encoder.cpp" />
     <ClCompile Include="encoder_ascii.cpp" />
     <ClCompile Include="encoder_byte_vector.cpp" />

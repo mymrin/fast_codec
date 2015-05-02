@@ -1,17 +1,31 @@
 #ifndef FAST_SIMPLE_CODEC_DECIMAL_HEADER
 #define FAST_SIMPLE_CODEC_DECIMAL_HEADER
 
-#include <cstdint>
+#include <stdint.h>
+#include "bcd.h"
 
 namespace fast_simple_codec
 {
-	typedef std::int8_t exponent_t;
-	typedef std::int64_t mantissa_t;
-
 	struct Decimal
 	{
 		exponent_t exponent_;
 		mantissa_t mantissa_;
+
+		explicit Decimal(const uint8_t* bcd)
+		{
+			bcd_to_decimal(bcd, mantissa_, exponent_);
+			exponent_ = -exponent_;
+		}
+
+		Decimal(exponent_t e, mantissa_t m) : exponent_(e), mantissa_(m) {}
+
+		template<uint8_t N, uint8_t M>
+		uint32_t ToBCD(uint8_t (&bcd)[sizeof(uint16_t) + BCD_SIZEOF(BCD_MAKE_TYPE(N, M))])
+		{
+			uint16_t& typ = reinterpret_cast<uint16_t&>(bcd);
+			typ = BCD_MAKE_TYPE(N, M);
+			return decimal_to_bcd(bcd + sizeof(uint16_t), BCD_MAKE_TYPE(N, M), mantissa_, -exponent_);
+		}
 	};
 }
 

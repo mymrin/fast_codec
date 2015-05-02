@@ -12,18 +12,12 @@ int encode_decimal(Encoder& e, const Decimal& d)
 	return size;	
 }
 
-int encode_bcd(Encoder& e, void* bcd)
+int encode_bcd(Encoder& e, const uint8_t* bcd)
 {
 	if(!bcd)
 		return 0;
 
-	Decimal d;
-// TODO
-//	cg_bcd_get(bcd, &d.mantissa_, &d.exponent_);
-	
-	// Convert scale to exponent
-//	d.exponent_ = -d.exponent_;
-
+	Decimal d(bcd);
 	return encode_decimal(e, d);
 }
 
@@ -45,7 +39,7 @@ int encode_decimal_optional(Encoder& e, const DecimalNullable& d)
 	}
 }
 
-int encode_bcd_optional(Encoder& e, void* bcd)
+int encode_bcd_optional(Encoder& e, const uint8_t* bcd)
 {
 	if(bcd == NULL)
 	{
