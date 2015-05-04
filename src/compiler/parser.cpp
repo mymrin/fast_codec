@@ -64,6 +64,9 @@ void Parser::Parse(const std::string& templates, const std::string& output)
 		{
 			out << "struct " << t.second.get_child("<xmlattr>.name").data() << std::endl;
 			out << "{" << std::endl;
+			out << "   const int id = " << t.second.get_child("<xmlattr>.id").data() << ";" << std::endl;
+			out << "   const int dictionary = " << t.second.get_child("<xmlattr>.dictionary").data() << ";" << std::endl;
+			out << std::endl;
 
 			const auto& fields = t.second.get_child("");
 			for (const auto& f : fields)
@@ -72,15 +75,21 @@ void Parser::Parse(const std::string& templates, const std::string& output)
 				{
 					out << "   ";
 					std::string const_value;
-					if (ParseField(f, out, const_value))
-						;
+					if (f.first == "sequence")
+					{
+						out << "std::vector<" << f.second.get_child("<xmlattr>.name").data() << "> ";
+						out << f.second.get_child("<xmlattr>.name").data() + "_Seq;" << std::endl;
+					}
 					else
-						out << f.first.data();
-					out << " " << f.second.get_child("<xmlattr>.name").data() << const_value << ";" << std::endl;
+					{
+						if (!ParseField(f, out, const_value))
+							out << f.first.data();
+						out << " " << f.second.get_child("<xmlattr>.name").data() << const_value << ";" << std::endl;
+					}
 				}
 			}
 
-			out << "}" << std::endl;
+			out << "};" << std::endl;
 			out << std::endl;
 		}
 	}
