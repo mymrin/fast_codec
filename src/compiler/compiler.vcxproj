@@ -17,6 +17,11 @@
   <ItemGroup>
     <ClInclude Include="parser.h" />
   </ItemGroup>
+  <ItemGroup>
+    <Xml Include="..\..\etc\templates.xml">
+      <SubType>Designer</SubType>
+    </Xml>
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{5D8F64E9-530D-4D8C-BB35-B1081CAF237B}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>

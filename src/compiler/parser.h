@@ -9,8 +9,6 @@ class Parser
 public:
 	Parser() {};
 	void Parse(const std::string& templates, const std::string& output);
-private:
-	std::list<std::string> output_;
 };
 
 #endif

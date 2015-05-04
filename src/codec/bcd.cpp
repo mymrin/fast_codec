@@ -5,7 +5,7 @@
 	#include <alloca.h>
 	#define _alloca alloca
 #else
-	#include<malloc.h>
+	#include <malloc.h>
 #endif
 
 #include "bcd.h"

@@ -1,8 +1,8 @@
 #ifndef FAST_GATE_TIME_COUNTER_HEADER
 #define FAST_GATE_TIME_COUNTER_HEADER
 
-#include<cstdint>
-#include<chrono>
+#include <cstdint>
+#include <chrono>
 
 struct TimeCounter
 {
