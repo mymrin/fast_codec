@@ -153,7 +153,10 @@ BOOST_AUTO_TEST_CASE(test_encoder_int)
 BOOST_AUTO_TEST_CASE(perf_test_encoder_int)
 {
 #ifdef NDEBUG
-	const uint32_t cCycleCount = 1000000;
+	const int cCycleCount = 1000000;
+#else
+	const int cCycleCount = 10;
+#endif
 
 	fast_simple_codec::Encoder encoder;
 	encoder.data_.reserve(6*cCycleCount);
@@ -170,5 +173,4 @@ BOOST_AUTO_TEST_CASE(perf_test_encoder_int)
 		for(uint32_t j = 0; j < cCycleCount; ++j)
 			encode_u64(encoder, v+j);
 	}
-#endif
 }

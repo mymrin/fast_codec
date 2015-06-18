@@ -1,5 +1,4 @@
 #include "parser.h"
-#include <boost/property_tree/xml_parser.hpp>
 
 namespace pt = boost::property_tree;
 
@@ -37,13 +36,73 @@ bool ParseField(const F& f, std::ofstream& out, std::string& const_value)
 			out << "std::uint32_t";
 		return true;
 	}
+	else if (f.first == "int32")
+	{
+		if (!ParseConstant(f.second, "std::int32_t", out, const_value))
+			out << "std::int32_t";
+		return true;
+	}
 	else if (f.first == "uInt64")
 	{
 		if (!ParseConstant(f.second, "std::uint64_t", out, const_value))
 			out << "std::uint64_t";
 		return true;
 	}
+	else if (f.first == "int64")
+	{
+		if (!ParseConstant(f.second, "std::int64_t", out, const_value))
+			out << "std::int64_t";
+		return true;
+	}
 	return false;
+}
+
+void Parser::ParseFields(std::ofstream& out, const pt::ptree& fields)
+{
+	std::string indent(indent_);
+	for (std::uint8_t i = 0; i != indent_counter_; ++i)
+		indent += indent_;
+
+	for (const auto& f : fields)
+	{
+		if (f.first != "<xmlattr>")
+		{
+			std::string const_value;
+			if (f.first == "sequence")
+			{
+				std::string sequence_name = f.second.get_child("<xmlattr>.name").data();
+				ParseSequence(out, sequence_name, f.second.get_child(""));
+			}
+			else if (f.first == "length")
+			{}
+			else
+			{
+				out << indent;
+				if (!ParseField(f, out, const_value))
+					out << f.first.data();
+				out << " " << f.second.get_child("<xmlattr>.name").data() << const_value << ";" << std::endl;
+			}
+		}
+	}
+}
+
+void Parser::ParseSequence(std::ofstream& out, const std::string& name, const pt::ptree& fields)
+{
+	std::string indent(indent_);
+	for (std::uint8_t i = 0; i != indent_counter_; ++i)
+		indent += indent_;
+
+	out << std::endl;
+	out << indent << "struct " << name << std::endl;
+	out << indent << "{" << std::endl;
+
+	const auto& childs = fields.get_child("");
+	++indent_counter_;
+	ParseFields(out, childs);
+	--indent_counter_;
+
+	out << indent << "};" << std::endl;
+	out << indent << "std::vector<" << name << "> " << name + "Seq;" << std::endl;
 }
 
 void Parser::Parse(const std::string& templates, const std::string& output)
@@ -69,25 +128,7 @@ void Parser::Parse(const std::string& templates, const std::string& output)
 			out << std::endl;
 
 			const auto& fields = t.second.get_child("");
-			for (const auto& f : fields)
-			{
-				if (f.first != "<xmlattr>")
-				{
-					out << "   ";
-					std::string const_value;
-					if (f.first == "sequence")
-					{
-						out << "std::vector<" << f.second.get_child("<xmlattr>.name").data() << "> ";
-						out << f.second.get_child("<xmlattr>.name").data() + "_Seq;" << std::endl;
-					}
-					else
-					{
-						if (!ParseField(f, out, const_value))
-							out << f.first.data();
-						out << " " << f.second.get_child("<xmlattr>.name").data() << const_value << ";" << std::endl;
-					}
-				}
-			}
+			ParseFields(out, fields);
 
 			out << "};" << std::endl;
 			out << std::endl;

@@ -25,7 +25,10 @@ BOOST_AUTO_TEST_CASE(test_encoder_byte_vector)
 BOOST_AUTO_TEST_CASE(perf_test_encoder_byte_vector)
 {
 #ifdef NDEBUG
-	const uint32_t cCycleCount = 1000000;
+	const int cCycleCount = 1000000;
+#else
+	const int cCycleCount = 10;
+#endif
 
 	fast_simple_codec::Encoder encoder;
 	fast_simple_codec::byte s[] = "TEST_STRING_TEST_STRING_TEST_STRING_TEST_STRING_TEST_STRING"
@@ -39,5 +42,4 @@ BOOST_AUTO_TEST_CASE(perf_test_encoder_byte_vector)
 			encode_byte_vector(encoder, s, sizeof(s));
 		}
 	}
-#endif
 }

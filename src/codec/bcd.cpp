@@ -473,4 +473,4 @@ void bcd_to_decimal(const uint8_t* bcd, mantissa_t& intpart, exponent_t& pscale)
 	pscale = scale;
 }
 
-} // namespace
+}

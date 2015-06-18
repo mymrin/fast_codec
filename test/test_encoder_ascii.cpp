@@ -34,7 +34,10 @@ BOOST_AUTO_TEST_CASE(test_encoder_ascii)
 BOOST_AUTO_TEST_CASE(perf_test_encoder_ascii)
 {
 #ifdef NDEBUG
-	const uint32_t cCycleCount = 1000000;
+	const int cCycleCount = 1000000;
+#else
+	const int cCycleCount = 10;
+#endif
 
 	fast_simple_codec::Encoder encoder;
 	char s[] = "TEST_STRING";
@@ -46,5 +49,4 @@ BOOST_AUTO_TEST_CASE(perf_test_encoder_ascii)
 			encode_ascii(encoder, s, sizeof(s));
 		}
 	}
-#endif
 }

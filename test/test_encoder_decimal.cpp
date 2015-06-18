@@ -40,9 +40,9 @@ BOOST_AUTO_TEST_CASE(test_encoder_bcd)
 BOOST_AUTO_TEST_CASE(perf_test_encoder_bcd)
 {
 #ifdef NDEBUG
-	#define cCycleCount 1000000
+	const int cCycleCount = 1000000;
 #else
-	#define cCycleCount 10
+	const int cCycleCount = 10;
 #endif
 
 	fast_simple_codec::Encoder encoder;
