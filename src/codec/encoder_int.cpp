@@ -1,7 +1,7 @@
 #include "encoder.h"
 #include "encoder_int.h"
 
-namespace fast_simple_codec
+namespace fast_codec
 {
 
 int size_of_u32(std::uint32_t d)

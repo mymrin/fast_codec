@@ -1,9 +1,9 @@
-#ifndef FAST_SIMPLE_BCD_HEADER
-#define FAST_SIMPLE_BCD_HEADER
+#ifndef FAST_BCD_HEADER
+#define FAST_BCD_HEADER
 
 #include <stdint.h>
 
-namespace fast_simple_codec
+namespace fast_codec
 {
 	typedef int8_t exponent_t;
 	typedef int64_t mantissa_t;

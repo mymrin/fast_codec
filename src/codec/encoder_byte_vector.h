@@ -1,7 +1,7 @@
-#ifndef FAST_SIMPLE_CODEC_ENCODER_BYTE_VECTOR_HEADER
-#define FAST_SIMPLE_CODEC_ENCODER_BYTE_VECTOR_HEADER
+#ifndef FAST_CODEC_ENCODER_BYTE_VECTOR_HEADER
+#define FAST_CODEC_ENCODER_BYTE_VECTOR_HEADER
 
-namespace fast_simple_codec
+namespace fast_codec
 {
 	typedef std::uint8_t byte;
 

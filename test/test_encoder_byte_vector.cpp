@@ -5,7 +5,7 @@
 
 BOOST_AUTO_TEST_CASE(test_encoder_byte_vector)
 {
-	fast_simple_codec::Encoder encoder;
+	fast_codec::Encoder encoder;
 
 	const unsigned char sTestEtalon[] =
 	{
@@ -15,7 +15,7 @@ BOOST_AUTO_TEST_CASE(test_encoder_byte_vector)
 	
 	encode_byte_vector(encoder, 0, 0);
 
-	fast_simple_codec::byte buf[] = "ABC";
+	fast_codec::byte buf[] = "ABC";
 	encode_byte_vector(encoder, buf, sizeof(buf) - 1);
 
 	Check(encoder, sTestEtalon);
@@ -30,8 +30,8 @@ BOOST_AUTO_TEST_CASE(perf_test_encoder_byte_vector)
 	const int cCycleCount = 10;
 #endif
 
-	fast_simple_codec::Encoder encoder;
-	fast_simple_codec::byte s[] = "TEST_STRING_TEST_STRING_TEST_STRING_TEST_STRING_TEST_STRING"
+	fast_codec::Encoder encoder;
+	fast_codec::byte s[] = "TEST_STRING_TEST_STRING_TEST_STRING_TEST_STRING_TEST_STRING"
 		"TEST_STRING_TEST_STRING_TEST_STRING_TEST_STRING_TEST_STRING"
 		"TEST_STRING_TEST_STRING_TEST_STRING_TEST_STRING_TEST_STRING";
 	{

@@ -5,7 +5,7 @@
 
 BOOST_AUTO_TEST_CASE(test_encoder_ascii)
 {
-	fast_simple_codec::Encoder encoder;
+	fast_codec::Encoder encoder;
 
 	const unsigned char sTestEtalon[] =
 	{
@@ -39,7 +39,7 @@ BOOST_AUTO_TEST_CASE(perf_test_encoder_ascii)
 	const int cCycleCount = 10;
 #endif
 
-	fast_simple_codec::Encoder encoder;
+	fast_codec::Encoder encoder;
 	char s[] = "TEST_STRING";
 	{
 		TimeCounterGuard t("encode_ascii (11 bytes)", cCycleCount);

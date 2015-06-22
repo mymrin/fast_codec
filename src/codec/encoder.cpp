@@ -1,7 +1,7 @@
 
 #include "encoder.h"
 
-namespace fast_simple_codec
+namespace fast_codec
 {
 
 void write_byte(Encoder& codec, std::uint8_t b)
@@ -9,4 +9,4 @@ void write_byte(Encoder& codec, std::uint8_t b)
 	codec.data_.push_back(b);
 }
 
-} // namespace
+}

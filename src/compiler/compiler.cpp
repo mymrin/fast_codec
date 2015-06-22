@@ -1,6 +1,7 @@
 #include <string>
 #include <iostream>
 #include <boost/program_options.hpp>
+#include "config.h"
 #include "parser.h"
 
 namespace po = boost::program_options;
@@ -9,13 +10,14 @@ int main(int argc, char *argv[])
 {
 	try
 	{
-		std::string templates("templates.xml");
-		std::string output("templates.h");
+		Config cfg;
 		po::options_description desc("Allowed options");
 		desc.add_options()
 			("help", "produce help message")
-			("templates,t", po::value<std::string>(&templates), "input templates file")
-			("output,o", po::value<std::string>(&output), "output file");
+			("templates,t", po::value<std::string>(&cfg.templates_), "input templates file")
+			("templates_h,h", po::value<std::string>(&cfg.templates_h_), "output file with message structs")
+			("templates_encoders_h,e", po::value<std::string>(&cfg.templates_encoders_h_), "output file with encoder function definitions")
+			("templates_encoders_cpp,c", po::value<std::string>(&cfg.templates_encoders_cpp_), "output file with encoder function implementations");
 
 		po::variables_map vm;
 		po::store(po::parse_command_line(argc, argv, desc), vm);
@@ -26,11 +28,14 @@ int main(int argc, char *argv[])
 			return 1;
 		}
 
-		std::cout << "Compile templates: " << templates << std::endl;
+		std::cout << "Compile templates: " << cfg.templates_ << std::endl;
 		Parser parser;
-		parser.Parse(templates, output);
+		parser.GenerateCppSources(cfg);
 
-		std::cout << "Output file: " << output << std::endl;
+		std::cout << "Output files: " << std::endl 
+			<< cfg.templates_h_ << std::endl
+			<< cfg.templates_encoders_h_ << std::endl
+			<< cfg.templates_encoders_cpp_ << std::endl;
 	}
 	catch (const std::exception& e)
 	{

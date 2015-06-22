@@ -2,7 +2,7 @@
 #include "encoder_int.h"
 #include "encoder_byte_vector.h"
 
-namespace fast_simple_codec
+namespace fast_codec
 {
 
 size_t encode_byte_vector(Encoder& e, const byte* pBuf, size_t bufSize)

@@ -2,7 +2,7 @@
 #include "encoder_int.h"
 #include "encoder_decimal.h"
 
-namespace fast_simple_codec
+namespace fast_codec
 {
 
 int encode_decimal(Encoder& e, const Decimal& d)

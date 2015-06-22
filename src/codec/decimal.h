@@ -1,10 +1,10 @@
-#ifndef FAST_SIMPLE_CODEC_DECIMAL_HEADER
-#define FAST_SIMPLE_CODEC_DECIMAL_HEADER
+#ifndef FAST_CODEC_DECIMAL_HEADER
+#define FAST_CODEC_DECIMAL_HEADER
 
 #include <stdint.h>
 #include "bcd.h"
 
-namespace fast_simple_codec
+namespace fast_codec
 {
 	struct Decimal
 	{

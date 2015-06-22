@@ -1,10 +1,10 @@
-#ifndef FAST_SIMPLE_CODEC_ENCODER_DECIMAL_HEADER
-#define FAST_SIMPLE_CODEC_ENCODER_DECIMAL_HEADER
+#ifndef FAST_CODEC_ENCODER_DECIMAL_HEADER
+#define FAST_CODEC_ENCODER_DECIMAL_HEADER
 
 #include "decimal.h"
 #include "nullable_types.h"
 
-namespace fast_simple_codec
+namespace fast_codec
 {
 	struct Encoder;
 	int encode_decimal(Encoder& e, const Decimal& d);

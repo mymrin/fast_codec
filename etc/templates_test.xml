@@ -1,0 +1,20 @@
+<templates xmlns="http://www.fixprotocol.org/ns/fast/td/1.1">
+    <template name="DefaultIncrementalRefreshMessage" id="80" dictionary="80">
+        <string name="ConstField" id="1128">
+            <constant value="1"/>
+        </string>
+        <sequence name="Sequence">
+            <length name="NoSequence" id="200"/>
+			<uInt32 name="Field1" id="201"/>
+            <sequence name="NestedSequence">
+                <length name="NoNestedSequence" id="202"/>
+                    <sequence name="NestedSequence2">
+                       <length name="NoNestedSequence2" id="203"/>
+			           <uInt64 name="Field2" id="204"/>
+                    </sequence>
+			    <uInt64 name="Field2" id="205"/>
+            </sequence>
+            <string name="Field1" id="201"/>
+        </sequence>
+    </template>
+</templates>

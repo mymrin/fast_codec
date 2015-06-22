@@ -1,9 +1,9 @@
-#ifndef FAST_SIMPLE_CODEC_ENCODER_INT_HEADER
-#define FAST_SIMPLE_CODEC_ENCODER_INT_HEADER
+#ifndef FAST_ENCODER_INT_HEADER
+#define FAST_ENCODER_INT_HEADER
 
 #include "nullable_types.h"
 
-namespace fast_simple_codec
+namespace fast_codec
 {
 	struct Encoder;
 

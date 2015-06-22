@@ -6,7 +6,7 @@
 
 BOOST_AUTO_TEST_CASE(test_encoder_int)
 {
-	fast_simple_codec::Encoder encoder;
+	fast_codec::Encoder encoder;
 
 	// uInt32 test
 	const unsigned char sU32Etalon[] =
@@ -158,7 +158,7 @@ BOOST_AUTO_TEST_CASE(perf_test_encoder_int)
 	const int cCycleCount = 10;
 #endif
 
-	fast_simple_codec::Encoder encoder;
+	fast_codec::Encoder encoder;
 	encoder.data_.reserve(6*cCycleCount);
 	{
 		TimeCounterGuard t("encode_u32", cCycleCount);

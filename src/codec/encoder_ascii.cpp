@@ -1,10 +1,10 @@
 #include "encoder.h"
 #include "encoder_ascii.h"
 
-namespace fast_simple_codec
+namespace fast_codec
 {
 
-int encode_ascii(Encoder& e, const char* pStr, std::uint32_t length)
+size_t encode_ascii(Encoder& e, const char* pStr, size_t length)
 {
 	if(pStr != NULL && length != 0)
 	{
@@ -30,7 +30,12 @@ int encode_ascii(Encoder& e, const char* pStr, std::uint32_t length)
 	return 0;
 }
 
-int encode_ascii_optional(Encoder& e, const char* pStr, std::uint32_t length)
+size_t encode_ascii(Encoder& e, const std::string& str)
+{
+	return encode_ascii(e, str.c_str(), str.size());
+}
+
+size_t encode_ascii_optional(Encoder& e, const char* pStr, size_t length)
 {
 	if(pStr == NULL)
 	{
@@ -47,6 +52,14 @@ int encode_ascii_optional(Encoder& e, const char* pStr, std::uint32_t length)
 	{
 		return encode_ascii(e, pStr, length);
 	}
+}
+
+size_t encode_ascii_optional(Encoder& e, const string_nt& str)
+{
+	if (str.isNull_)
+		return encode_ascii_optional(e, nullptr, 0);
+	else
+		return encode_ascii_optional(e, str.value_.c_str(), str.value_.size());
 }
 
 } // namespace

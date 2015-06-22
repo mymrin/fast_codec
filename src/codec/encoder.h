@@ -1,12 +1,12 @@
-#ifndef FAST_SIMPLE_CODEC_ENCODER_HEADER
-#define FAST_SIMPLE_CODEC_ENCODER_HEADER
+#ifndef FAST_CODEC_ENCODER_HEADER
+#define FAST_CODEC_ENCODER_HEADER
 
 #include <cstdint>
 #include <vector>
 
 #define FAST_MAX_MSG_SIZE 65507
 
-namespace fast_simple_codec
+namespace fast_codec
 {
 	struct Encoder
 	{

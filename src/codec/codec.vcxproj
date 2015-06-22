@@ -18,6 +18,7 @@
     <ClInclude Include="encoder_byte_vector.h" />
     <ClInclude Include="encoder_decimal.h" />
     <ClInclude Include="encoder_int.h" />
+    <ClInclude Include="fast_codec.h" />
     <ClInclude Include="nullable_types.h" />
   </ItemGroup>
   <ItemGroup>

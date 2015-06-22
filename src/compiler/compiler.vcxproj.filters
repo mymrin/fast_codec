@@ -29,6 +29,9 @@
     <ClInclude Include="parser.h">
       <Filter>Source Files</Filter>
     </ClInclude>
+    <ClInclude Include="config.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Xml Include="..\..\etc\templates.xml">

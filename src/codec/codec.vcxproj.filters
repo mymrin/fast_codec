@@ -39,6 +39,9 @@
     <ClInclude Include="bcd.h">
       <Filter>Source Files</Filter>
     </ClInclude>
+    <ClInclude Include="fast_codec.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="encoder_byte_vector.cpp">

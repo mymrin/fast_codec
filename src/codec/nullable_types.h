@@ -1,9 +1,9 @@
-#ifndef FAST_SIMPLE_CODEC_NULLABLE_TYPES_HEADER
-#define FAST_SIMPLE_CODEC_NULLABLE_TYPES_HEADER
+#ifndef FAST_CODEC_NULLABLE_TYPES_HEADER
+#define FAST_CODEC_NULLABLE_TYPES_HEADER
 
 #include "decimal.h"
 
-namespace fast_simple_codec
+namespace fast_codec
 {
 	template<typename T>
 	struct NullableType
@@ -15,6 +15,7 @@ namespace fast_simple_codec
 		explicit NullableType(const T& val) : value_(val), isNull_(false) {}
 	};
 
+	typedef NullableType<std::string> string_nt;
 	typedef NullableType<std::uint32_t> uint32_nt;
 	typedef NullableType<std::int32_t> int32_nt;
 	typedef NullableType<std::uint64_t> uint64_nt;

@@ -12,7 +12,7 @@
 
 #define _alloca alloca
 
-namespace fast_simple_codec
+namespace fast_codec
 {
 
 // Cпособы округления
