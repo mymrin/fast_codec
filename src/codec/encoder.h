@@ -23,7 +23,8 @@ namespace fast_codec
 		std::vector<std::uint8_t> data_;
 	};
 
-	void write_byte(Encoder& codec, std::uint8_t b);
+	void write_byte(Encoder& c, std::uint8_t b);
+	void write(Encoder& c, std::uint32_t msg_seq_num);
 }
 
 #endif

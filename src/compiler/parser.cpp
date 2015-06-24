@@ -51,9 +51,9 @@ bool ParseField(const F& f, std::ofstream& out, std::ofstream& out_enc_cpp, std:
 	if (f.first == "string" && charset == "unicode")
 	{
 		if (presence == "optional")
-			GenerateOutput(out, out_enc_cpp, "fast_codec::string_nt", "encode_string_utf8_optional", indent, prefix, field_name);
+			GenerateOutput(out, out_enc_cpp, "fast_codec::string_nt", "fast_codec::encode_string_utf8_optional", indent, prefix, field_name);
 		else
-			GenerateOutput(out, out_enc_cpp, "std::string", "encode_string_utf8", indent, prefix, field_name);
+			GenerateOutput(out, out_enc_cpp, "std::string", "fast_codec::encode_string_utf8", indent, prefix, field_name);
 	}
 	else if (f.first == "string")
 	{
@@ -61,9 +61,9 @@ bool ParseField(const F& f, std::ofstream& out, std::ofstream& out_enc_cpp, std:
 		if (!is_constant)
 		{
 			if (presence == "optional")
-				GenerateOutput(out, out_enc_cpp, "fast_codec::string_nt", "encode_string_ascii_optional", indent, prefix, field_name);
+				GenerateOutput(out, out_enc_cpp, "fast_codec::string_nt", "fast_codec::encode_string_ascii_optional", indent, prefix, field_name);
 			else
-				GenerateOutput(out, out_enc_cpp, "std::string", "encode_string_ascii", indent, prefix, field_name);
+				GenerateOutput(out, out_enc_cpp, "std::string", "fast_codec::encode_string_ascii", indent, prefix, field_name);
 		}
 	}
 	else if (f.first == "uInt32")
@@ -72,9 +72,9 @@ bool ParseField(const F& f, std::ofstream& out, std::ofstream& out_enc_cpp, std:
 		if (!is_constant)
 		{
 			if (presence == "optional")
-				GenerateOutput(out, out_enc_cpp, "fast_codec::uint32_nt", "encode_u32_optional", indent, prefix, field_name);
+				GenerateOutput(out, out_enc_cpp, "fast_codec::uint32_nt", "fast_codec::encode_u32_optional", indent, prefix, field_name);
 			else
-				GenerateOutput(out, out_enc_cpp, "std::uint32_t", "encode_u32", indent, prefix, field_name);
+				GenerateOutput(out, out_enc_cpp, "std::uint32_t", "fast_codec::encode_u32", indent, prefix, field_name);
 		}
 	}
 	else if (f.first == "int32")
@@ -83,9 +83,9 @@ bool ParseField(const F& f, std::ofstream& out, std::ofstream& out_enc_cpp, std:
 		if (!is_constant)
 		{
 			if (presence == "optional")
-				GenerateOutput(out, out_enc_cpp, "fast_codec::int32_nt", "encode_i32_optional", indent, prefix, field_name);
+				GenerateOutput(out, out_enc_cpp, "fast_codec::int32_nt", "fast_codec::encode_i32_optional", indent, prefix, field_name);
 			else
-				GenerateOutput(out, out_enc_cpp, "std::int32_t", "encode_i32", indent, prefix, field_name);
+				GenerateOutput(out, out_enc_cpp, "std::int32_t", "fast_codec::encode_i32", indent, prefix, field_name);
 		}
 	}
 	else if (f.first == "uInt64")
@@ -94,9 +94,9 @@ bool ParseField(const F& f, std::ofstream& out, std::ofstream& out_enc_cpp, std:
 		if (!is_constant)
 		{
 			if (presence == "optional")
-				GenerateOutput(out, out_enc_cpp, "fast_codec::uint64_nt", "encode_u64_optional", indent, prefix, field_name);
+				GenerateOutput(out, out_enc_cpp, "fast_codec::uint64_nt", "fast_codec::encode_u64_optional", indent, prefix, field_name);
 			else
-				GenerateOutput(out, out_enc_cpp, "std::uint64_t", "encode_u64", indent, prefix, field_name);
+				GenerateOutput(out, out_enc_cpp, "std::uint64_t", "fast_codec::encode_u64", indent, prefix, field_name);
 		}
 	}
 	else if (f.first == "int64")
@@ -105,9 +105,9 @@ bool ParseField(const F& f, std::ofstream& out, std::ofstream& out_enc_cpp, std:
 		if (!is_constant)
 		{
 			if (presence == "optional")
-				GenerateOutput(out, out_enc_cpp, "fast_codec::int64_nt", "encode_i64_optional", indent, prefix, field_name);
+				GenerateOutput(out, out_enc_cpp, "fast_codec::int64_nt", "fast_codec::encode_i64_optional", indent, prefix, field_name);
 			else
-				GenerateOutput(out, out_enc_cpp, "std::int64_t", "encode_i64", indent, prefix, field_name);
+				GenerateOutput(out, out_enc_cpp, "std::int64_t", "fast_codec::encode_i64", indent, prefix, field_name);
 		}
 	}
 	else if (f.first == "decimal")
@@ -116,9 +116,9 @@ bool ParseField(const F& f, std::ofstream& out, std::ofstream& out_enc_cpp, std:
 		if (!is_constant)
 		{
 			if (presence == "optional")
-				GenerateOutput(out, out_enc_cpp, "fast_codec::DecimalNullable", "encode_decimal_optional", indent, prefix, field_name);
+				GenerateOutput(out, out_enc_cpp, "fast_codec::DecimalNullable", "fast_codec::encode_decimal_optional", indent, prefix, field_name);
 			else
-				GenerateOutput(out, out_enc_cpp, "fast_codec::Decimal", "encode_decimal", indent, prefix, field_name);
+				GenerateOutput(out, out_enc_cpp, "fast_codec::Decimal", "fast_codec::encode_decimal", indent, prefix, field_name);
 		}
 	}
 	else
@@ -217,12 +217,25 @@ void Parser::GenerateCppSources(const Config& cfg)
 			std::string name(t.second.get_child("<xmlattr>.name").data());
 			out << "struct " << name << std::endl;
 			out << "{" << std::endl;
-			out << "   const int id = " << t.second.get_child("<xmlattr>.id").data() << ";" << std::endl;
-			out << "   const int dictionary = " << t.second.get_child("<xmlattr>.dictionary").data() << ";" << std::endl;
+			out << "   const std::uint32_t id = " << t.second.get_child("<xmlattr>.id").data() << ";" << std::endl;
+			out << "   const std::uint32_t dictionary = " << t.second.get_child("<xmlattr>.dictionary").data() << ";" << std::endl;
 			out << std::endl;
 
 			out_enc_h << "void Encode(fast_codec::Encoder& encoder, const " << name << "& msg);" << std::endl;
 			out_enc_cpp << "void Encode(fast_codec::Encoder& encoder, const " << name << "& msg)" << std::endl << "{" << std::endl;
+			
+			if (cfg.is_msgseqnum_preamble_)
+			{
+				out_enc_cpp << indent_ << "// Preamble encoding" << std::endl;
+				out_enc_cpp << indent_ << "fast_codec::write(encoder, msg.MsgSeqNum);" << std::endl << std::endl;
+			}
+
+			out_enc_cpp << indent_ << "// Constant PMAP encoding" << std::endl;
+			out_enc_cpp << indent_ << "// 0xC0 is binary '1100 0000', the firts '1' is stop bit, the second '1' is a bit of template id" << std::endl;
+			out_enc_cpp << indent_ << "fast_codec::write_byte(encoder, 0xC0);" << std::endl << std::endl;
+
+			out_enc_cpp << indent_ << "// Template id encoding" << std::endl;
+			out_enc_cpp << indent_ << "fast_codec::encode_u32(encoder, msg.id);" << std::endl << std::endl;
 
 			const auto& fields = t.second.get_child("");
 			ParseFields(out, out_enc_cpp, fields, "msg.");
