@@ -3,7 +3,7 @@
 
 #include "bcd.h"
 #include "decimal.h"
-#include "encoder_ascii.h"
+#include "encoder_string_ascii.h"
 #include "encoder_byte_vector.h"
 #include "encoder_decimal.h"
 #include "encoder_int.h"

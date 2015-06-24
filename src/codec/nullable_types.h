@@ -9,10 +9,10 @@ namespace fast_codec
 	struct NullableType
 	{
 		T value_;
-		bool isNull_;
+		bool is_null_;
 
-		NullableType() : isNull_(true) {}
-		explicit NullableType(const T& val) : value_(val), isNull_(false) {}
+		NullableType() : is_null_(true) {}
+		explicit NullableType(const T& val) : value_(val), is_null_(false) {}
 	};
 
 	typedef NullableType<std::string> string_nt;

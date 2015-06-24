@@ -1,6 +1,9 @@
 <templates xmlns="http://www.fixprotocol.org/ns/fast/td/1.1">
-    <template name="DefaultIncrementalRefreshMessage" id="80" dictionary="80">
-        <string name="ConstField" id="1128">
+    <template name="TestMessage" id="80" dictionary="80">
+        <string name="Utf8String" id="100" charset="unicode"/>
+		<string name="OptionalUtf8String" id="101" presence="optional" charset="unicode"/>
+		<uInt32 name="OptionalField1" id="102" presence="optional"/>
+		<string name="ConstField" id="103">
             <constant value="1"/>
         </string>
         <sequence name="Sequence">
@@ -12,9 +15,9 @@
                        <length name="NoNestedSequence2" id="203"/>
 			           <uInt64 name="Field2" id="204"/>
                     </sequence>
-			    <uInt64 name="Field2" id="205"/>
+			    <uInt64 name="Field3" id="205"/>
             </sequence>
-            <string name="Field1" id="201"/>
+            <string name="Field4" id="206"/>
         </sequence>
     </template>
 </templates>

@@ -5,36 +5,36 @@
 namespace fast_codec
 {
 
-size_t encode_byte_vector(Encoder& e, const byte* pBuf, size_t bufSize)
-{
-	size_t size = encode_u64(e, bufSize);
-	
-	if(pBuf != 0 && bufSize != 0)
+	size_t encode_byte_vector(Encoder& e, const byte* pBuf, size_t bufSize)
 	{
-		size_t size = e.data_.size();
-		e.data_.resize(size + bufSize);
-		memcpy(&e.data_[size], pBuf, bufSize);
-	}
+		size_t size = encode_u64(e, bufSize);
 	
-	return size + bufSize;
-}
+		if(pBuf != 0 && bufSize != 0)
+		{
+			size_t size = e.data_.size();
+			e.data_.resize(size + bufSize);
+			memcpy(&e.data_[size], pBuf, bufSize);
+		}
+	
+		return size + bufSize;
+	}
 
-size_t encode_byte_vector_optional(Encoder& e, const byte* pBuf, std::uint32_t bufSize)
-{
-	if(pBuf == NULL)
+	size_t encode_byte_vector_optional(Encoder& e, const byte* pBuf, std::uint32_t bufSize)
 	{
-		write_byte(e, 0x80);
-		return 1;
+		if(pBuf == NULL)
+		{
+			write_byte(e, 0x80);
+			return 1;
+		}
+		else if(bufSize == 0)
+		{
+			write_byte(e, 0x81);
+			return 1;
+		}
+		else
+		{
+			return encode_byte_vector(e, pBuf, bufSize);
+		}
 	}
-	else if(bufSize == 0)
-	{
-		write_byte(e, 0x81);
-		return 1;
-	}
-	else
-	{
-		return encode_byte_vector(e, pBuf, bufSize);
-	}
-}
 
 } // namespace

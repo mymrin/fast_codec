@@ -18,9 +18,6 @@
     <ClInclude Include="encoder_byte_vector.h">
       <Filter>Source Files</Filter>
     </ClInclude>
-    <ClInclude Include="encoder_ascii.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
     <ClInclude Include="encoder.h">
       <Filter>Source Files</Filter>
     </ClInclude>
@@ -42,12 +39,15 @@
     <ClInclude Include="fast_codec.h">
       <Filter>Source Files</Filter>
     </ClInclude>
+    <ClInclude Include="encoder_string_ascii.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="encoder_string_utf8.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="encoder_byte_vector.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="encoder_ascii.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="encoder.cpp">
@@ -60,6 +60,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="bcd.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="encoder_string_ascii.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="encoder_string_utf8.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

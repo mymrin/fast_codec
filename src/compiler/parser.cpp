@@ -21,18 +21,49 @@ bool ParseConstant(const C& c, const std::string& field_type, std::ofstream& out
 	return false;
 }
 
+void GenerateOutput(std::ofstream& out, std::ofstream& out_enc_cpp, const std::string& type, const std::string& func,
+	const std::string& indent, const std::string& prefix, const std::string& field_name)
+{
+	out << type;
+	out_enc_cpp << indent << func << "(encoder, " << prefix << field_name << ");" << std::endl;
+}
+
 template<typename F>
 bool ParseField(const F& f, std::ofstream& out, std::ofstream& out_enc_cpp, std::string& const_value, const std::string& indent, const std::string& prefix)
 {
 	bool is_constant = false;
 	std::string field_name = f.second.get_child("<xmlattr>.name").data();
-	if (f.first == "string")
+	
+	std::string charset;
+	try
+	{
+		charset = f.second.get_child("<xmlattr>.charset").data();
+	}
+	catch (const pt::ptree_bad_path&) {}
+	
+	std::string presence;
+	try
+	{
+		presence = f.second.get_child("<xmlattr>.presence").data();
+	}
+	catch (const pt::ptree_bad_path&) {}
+
+	if (f.first == "string" && charset == "unicode")
+	{
+		if (presence == "optional")
+			GenerateOutput(out, out_enc_cpp, "fast_codec::string_nt", "encode_string_utf8_optional", indent, prefix, field_name);
+		else
+			GenerateOutput(out, out_enc_cpp, "std::string", "encode_string_utf8", indent, prefix, field_name);
+	}
+	else if (f.first == "string")
 	{
 		is_constant = ParseConstant(f.second, "char", out, const_value);
 		if (!is_constant)
 		{
-			out << "std::string";
-			out_enc_cpp << indent << "encode_ascii(encoder, " << prefix << field_name << ");" << std::endl;
+			if (presence == "optional")
+				GenerateOutput(out, out_enc_cpp, "fast_codec::string_nt", "encode_string_ascii_optional", indent, prefix, field_name);
+			else
+				GenerateOutput(out, out_enc_cpp, "std::string", "encode_string_ascii", indent, prefix, field_name);
 		}
 	}
 	else if (f.first == "uInt32")
@@ -40,8 +71,10 @@ bool ParseField(const F& f, std::ofstream& out, std::ofstream& out_enc_cpp, std:
 		is_constant = ParseConstant(f.second, "std::uint32_t", out, const_value);
 		if (!is_constant)
 		{
-			out << "std::uint32_t";
-			out_enc_cpp << indent << "encode_u32(encoder, " << prefix << field_name << ");" << std::endl;
+			if (presence == "optional")
+				GenerateOutput(out, out_enc_cpp, "fast_codec::uint32_nt", "encode_u32_optional", indent, prefix, field_name);
+			else
+				GenerateOutput(out, out_enc_cpp, "std::uint32_t", "encode_u32", indent, prefix, field_name);
 		}
 	}
 	else if (f.first == "int32")
@@ -49,8 +82,10 @@ bool ParseField(const F& f, std::ofstream& out, std::ofstream& out_enc_cpp, std:
 		is_constant = ParseConstant(f.second, "std::int32_t", out, const_value);
 		if (!is_constant)
 		{
-			out << "std::int32_t";
-			out_enc_cpp << indent << "encode_i32(encoder, " << prefix << field_name << ");" << std::endl;
+			if (presence == "optional")
+				GenerateOutput(out, out_enc_cpp, "fast_codec::int32_nt", "encode_i32_optional", indent, prefix, field_name);
+			else
+				GenerateOutput(out, out_enc_cpp, "std::int32_t", "encode_i32", indent, prefix, field_name);
 		}
 	}
 	else if (f.first == "uInt64")
@@ -58,8 +93,10 @@ bool ParseField(const F& f, std::ofstream& out, std::ofstream& out_enc_cpp, std:
 		is_constant = ParseConstant(f.second, "std::uint64_t", out, const_value);
 		if (!is_constant)
 		{
-			out << "std::uint64_t";
-			out_enc_cpp << indent << "encode_u64(encoder, " << prefix << field_name << ");" << std::endl;
+			if (presence == "optional")
+				GenerateOutput(out, out_enc_cpp, "fast_codec::uint64_nt", "encode_u64_optional", indent, prefix, field_name);
+			else
+				GenerateOutput(out, out_enc_cpp, "std::uint64_t", "encode_u64", indent, prefix, field_name);
 		}
 	}
 	else if (f.first == "int64")
@@ -67,8 +104,10 @@ bool ParseField(const F& f, std::ofstream& out, std::ofstream& out_enc_cpp, std:
 		is_constant = ParseConstant(f.second, "std::int64_t", out, const_value);
 		if (!is_constant)
 		{
-			out << "std::int64_t";
-			out_enc_cpp << indent << "encode_i64(encoder, " << prefix << field_name << ");" << std::endl;
+			if (presence == "optional")
+				GenerateOutput(out, out_enc_cpp, "fast_codec::int64_nt", "encode_i64_optional", indent, prefix, field_name);
+			else
+				GenerateOutput(out, out_enc_cpp, "std::int64_t", "encode_i64", indent, prefix, field_name);
 		}
 	}
 	else if (f.first == "decimal")
@@ -76,8 +115,10 @@ bool ParseField(const F& f, std::ofstream& out, std::ofstream& out_enc_cpp, std:
 		is_constant = ParseConstant(f.second, "fast_codec::Decimal", out, const_value);
 		if (!is_constant)
 		{
-			out << "fast_codec::Decimal";
-			out_enc_cpp << indent << "encode_decimal(encoder, " << prefix << field_name << ");" << std::endl;
+			if (presence == "optional")
+				GenerateOutput(out, out_enc_cpp, "fast_codec::DecimalNullable", "encode_decimal_optional", indent, prefix, field_name);
+			else
+				GenerateOutput(out, out_enc_cpp, "fast_codec::Decimal", "encode_decimal", indent, prefix, field_name);
 		}
 	}
 	else

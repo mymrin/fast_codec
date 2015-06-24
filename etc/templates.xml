@@ -294,7 +294,7 @@
         </sequence>
     </template>
 
-    <template name="Logon" id="10" dictionary="2">
+    <template name="Logon" id="1000" dictionary="2">
         <string name="ApplVerID" id="1128">
             <constant value="9"/>
         </string>
@@ -308,7 +308,7 @@
         <uInt64 name="SendingTime" id="52"/>
     </template>
 
-    <template name="Logout" id="11" dictionary="2">
+    <template name="Logout" id="1001" dictionary="2">
         <string name="ApplVerID" id="1128">
             <constant value="9"/>
         </string>
