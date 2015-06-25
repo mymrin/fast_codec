@@ -30,12 +30,24 @@
     <ClCompile Include="test_main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="templates_encoders.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="test_encoder_msg.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="time_counter.h">
       <Filter>Source Files</Filter>
     </ClInclude>
     <ClInclude Include="test_tools.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="templates.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="templates_encoders.h">
       <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>

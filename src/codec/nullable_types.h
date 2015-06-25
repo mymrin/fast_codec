@@ -13,6 +13,7 @@ namespace fast_codec
 
 		NullableType() : is_null_(true) {}
 		explicit NullableType(const T& val) : value_(val), is_null_(false) {}
+		NullableType(const T& val, bool b) : value_(val), is_null_(b) {}
 	};
 
 	typedef NullableType<std::string> string_nt;

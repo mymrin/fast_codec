@@ -110,44 +110,6 @@ BOOST_AUTO_TEST_CASE(test_encoder_int)
 
 	Check(encoder, sI64Etalon);
 	encoder.Reset();
-
-/*	// TEST CODE
-	encoder.Reset();
-	encode_i64(encoder, -2305);
-
-	//unsigned char buf[] = { 0x12, 0x81 }; // delta = 2305-1 (-1 - due optional field) = 2304
-	unsigned char buf[] = { 0x6d, 0xff }; // delta = -2305
-	//Byte = sddd dddd, where s = stop bit (1=last byte, 0=continued byte), d = data
-
-	//Standard extraction:
-	int count = 0;
-	uint64_t lastValue = 1000000;
-	uint64_t value = 0;
-	int64_t delta = 0;
-	int64_t offset = 0;
-	unsigned char byte = 0;
-	unsigned char* pBuf = buf;
-
-	do
-	{
-		byte = *pBuf;
-		delta = (delta << 7) + (byte & 0x7f);
-		++count;
-		++pBuf;
-	}
-	while ((byte & 0x80) == 0);
-
-	//Delta algorithm:
-	if ((delta & 1) == 1) // -ve
-	{
-		offset = (1 << (7 * count)) - 1;
-		value = lastValue - (offset - delta);
-	}
-	else // +ve
-	{
-		value = lastValue + delta;
-	}
-*/
 }
 
 BOOST_AUTO_TEST_CASE(perf_test_encoder_int)

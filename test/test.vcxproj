@@ -151,13 +151,17 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="templates_encoders.cpp" />
     <ClCompile Include="test_encoder_ascii.cpp" />
     <ClCompile Include="test_encoder_byte_vector.cpp" />
     <ClCompile Include="test_encoder_decimal.cpp" />
     <ClCompile Include="test_encoder_int.cpp" />
+    <ClCompile Include="test_encoder_msg.cpp" />
     <ClCompile Include="test_main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="templates.h" />
+    <ClInclude Include="templates_encoders.h" />
     <ClInclude Include="test_tools.h" />
     <ClInclude Include="time_counter.h" />
   </ItemGroup>

@@ -10,9 +10,13 @@ bool ParseConstant(const C& c, const std::string& field_type, std::ofstream& out
 	{
 		if (f.first == "constant")
 		{
-			out << "const" << " " << field_type;
-			if (field_type == "char")
-				const_value = std::string("[] = ") + "\"" + f.second.get_child("<xmlattr>.value").data() + "\"";
+			// A static data member with an in-class initializer must have non-volatile const integral type
+			if (field_type == "std::string" || field_type == "fast_codec::Decimal")
+				out << "// ";
+
+			out << "static const" << " " << field_type;
+			if (field_type == "std::string")
+				const_value = std::string(" = ") + "\"" + f.second.get_child("<xmlattr>.value").data() + "\"";
 			else
 				const_value += std::string(" = ") + f.second.get_child("<xmlattr>.value").data();
 			return true;
@@ -57,7 +61,7 @@ bool ParseField(const F& f, std::ofstream& out, std::ofstream& out_enc_cpp, std:
 	}
 	else if (f.first == "string")
 	{
-		is_constant = ParseConstant(f.second, "char", out, const_value);
+		is_constant = ParseConstant(f.second, "std::string", out, const_value);
 		if (!is_constant)
 		{
 			if (presence == "optional")
@@ -200,7 +204,7 @@ void Parser::GenerateCppSources(const Config& cfg)
 
 	out << "#include <cstdint>" << std::endl;
 	out << "#include <string>" << std::endl;
-	out << "#include \"fast_codec.h\"" << std::endl;
+	out << "#include \"codec/fast_codec.h\"" << std::endl;
 	out << std::endl;
 
 	out_enc_h << "#include \"" << cfg.templates_h_ << "\"" << std::endl;
@@ -217,8 +221,8 @@ void Parser::GenerateCppSources(const Config& cfg)
 			std::string name(t.second.get_child("<xmlattr>.name").data());
 			out << "struct " << name << std::endl;
 			out << "{" << std::endl;
-			out << "   const std::uint32_t id = " << t.second.get_child("<xmlattr>.id").data() << ";" << std::endl;
-			out << "   const std::uint32_t dictionary = " << t.second.get_child("<xmlattr>.dictionary").data() << ";" << std::endl;
+			out << indent_ << "static const std::uint32_t id = " << t.second.get_child("<xmlattr>.id").data() << ";" << std::endl;
+			out << indent_ << "static const std::uint32_t dictionary = " << t.second.get_child("<xmlattr>.dictionary").data() << ";" << std::endl;
 			out << std::endl;
 
 			out_enc_h << "void Encode(fast_codec::Encoder& encoder, const " << name << "& msg);" << std::endl;

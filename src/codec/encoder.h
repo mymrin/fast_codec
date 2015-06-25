@@ -20,7 +20,7 @@ namespace fast_codec
 			data_.clear();
 		}
 
-		std::vector<std::uint8_t> data_;
+		std::vector<char> data_;
 	};
 
 	void write_byte(Encoder& c, std::uint8_t b);

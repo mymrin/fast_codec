@@ -1,4 +1,5 @@
 <templates xmlns="http://www.fixprotocol.org/ns/fast/td/1.1">
+
     <template name="DefaultIncrementalRefreshMessage" id="1" dictionary="1">
         <string name="ApplVerID" id="1128">
             <constant value="9"/>
