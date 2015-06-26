@@ -15,7 +15,7 @@ void Encode(fast_codec::Encoder& encoder, const DefaultIncrementalRefreshMessage
    fast_codec::encode_u32(encoder, msg.MsgSeqNum);
    fast_codec::encode_u64(encoder, msg.SendingTime);
    if (!msg.MDEntriesSeq.empty())
-      encode_u64(encoder, msg.MDEntriesSeq.size());
+      fast_codec::encode_u64(encoder, msg.MDEntriesSeq.size());
    for(const auto& i0 : msg.MDEntriesSeq)
    {
       fast_codec::encode_u32(encoder, i0.MDUpdateAction);
@@ -62,7 +62,7 @@ void Encode(fast_codec::Encoder& encoder, const DefaultSnapshotMessage& msg)
    fast_codec::encode_string_ascii_optional(encoder, msg.Symbol);
    fast_codec::encode_string_ascii_optional(encoder, msg.SecurityGroup);
    if (!msg.MDEntriesSeq.empty())
-      encode_u64(encoder, msg.MDEntriesSeq.size());
+      fast_codec::encode_u64(encoder, msg.MDEntriesSeq.size());
    for(const auto& i0 : msg.MDEntriesSeq)
    {
       fast_codec::encode_string_ascii(encoder, i0.MDEntryType);
@@ -113,7 +113,7 @@ void Encode(fast_codec::Encoder& encoder, const SecurityDefinition& msg)
    fast_codec::encode_u32_optional(encoder, msg.ExchangeTradingSessionID);
    fast_codec::encode_decimal_optional(encoder, msg.Volatility);
    if (!msg.MDFeedTypesSeq.empty())
-      encode_u64(encoder, msg.MDFeedTypesSeq.size());
+      fast_codec::encode_u64(encoder, msg.MDFeedTypesSeq.size());
    for(const auto& i0 : msg.MDFeedTypesSeq)
    {
       fast_codec::encode_string_ascii(encoder, i0.MDFeedType);
@@ -121,7 +121,7 @@ void Encode(fast_codec::Encoder& encoder, const SecurityDefinition& msg)
       fast_codec::encode_u32_optional(encoder, i0.MDBookType);
    }
    if (!msg.UnderlyingsSeq.empty())
-      encode_u64(encoder, msg.UnderlyingsSeq.size());
+      fast_codec::encode_u64(encoder, msg.UnderlyingsSeq.size());
    for(const auto& i0 : msg.UnderlyingsSeq)
    {
       fast_codec::encode_string_ascii(encoder, i0.UnderlyingSymbol);
@@ -138,7 +138,7 @@ void Encode(fast_codec::Encoder& encoder, const SecurityDefinition& msg)
    fast_codec::encode_decimal_optional(encoder, msg.TheorPrice);
    fast_codec::encode_decimal_optional(encoder, msg.TheorPriceLimit);
    if (!msg.InstrumentLegsSeq.empty())
-      encode_u64(encoder, msg.InstrumentLegsSeq.size());
+      fast_codec::encode_u64(encoder, msg.InstrumentLegsSeq.size());
    for(const auto& i0 : msg.InstrumentLegsSeq)
    {
       fast_codec::encode_string_ascii(encoder, i0.LegSymbol);
@@ -146,7 +146,7 @@ void Encode(fast_codec::Encoder& encoder, const SecurityDefinition& msg)
       fast_codec::encode_decimal(encoder, i0.LegRatioQty);
    }
    if (!msg.InstrumentAttributesSeq.empty())
-      encode_u64(encoder, msg.InstrumentAttributesSeq.size());
+      fast_codec::encode_u64(encoder, msg.InstrumentAttributesSeq.size());
    for(const auto& i0 : msg.InstrumentAttributesSeq)
    {
       fast_codec::encode_i32(encoder, i0.InstrAttribType);
@@ -155,7 +155,7 @@ void Encode(fast_codec::Encoder& encoder, const SecurityDefinition& msg)
    fast_codec::encode_decimal_optional(encoder, msg.UnderlyingQty);
    fast_codec::encode_string_ascii_optional(encoder, msg.UnderlyingCurrency);
    if (!msg.EvntGrpSeq.empty())
-      encode_u64(encoder, msg.EvntGrpSeq.size());
+      fast_codec::encode_u64(encoder, msg.EvntGrpSeq.size());
    for(const auto& i0 : msg.EvntGrpSeq)
    {
       fast_codec::encode_i32(encoder, i0.EventType);
@@ -289,7 +289,7 @@ void Encode(fast_codec::Encoder& encoder, const News& msg)
    fast_codec::encode_string_utf8(encoder, msg.Headline);
    fast_codec::encode_string_ascii_optional(encoder, msg.MarketSegmentID);
    if (!msg.NewsTextSeq.empty())
-      encode_u64(encoder, msg.NewsTextSeq.size());
+      fast_codec::encode_u64(encoder, msg.NewsTextSeq.size());
    for(const auto& i0 : msg.NewsTextSeq)
    {
       fast_codec::encode_string_utf8(encoder, i0.Text);

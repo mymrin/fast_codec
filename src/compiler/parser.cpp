@@ -178,7 +178,7 @@ void Parser::ParseSequence(std::ofstream& out, std::ofstream& out_enc_cpp, const
 
 	std::string cycle_param_name = "i" + std::to_string(indent_counter_);
 	out_enc_cpp << indent << "if (!" << prefix << name << "Seq.empty())" << std::endl;
-	out_enc_cpp << indent << indent_ << "encode_u64(encoder, " << prefix << name << "Seq.size());" << std::endl;
+	out_enc_cpp << indent << indent_ << "fast_codec::encode_u64(encoder, " << prefix << name << "Seq.size());" << std::endl;
 	out_enc_cpp << indent << "for(const auto& " << cycle_param_name << " : " << prefix << name + "Seq" << ")" << std::endl;
 	out_enc_cpp << indent << "{" << std::endl;
 
