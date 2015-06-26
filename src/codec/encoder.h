@@ -8,6 +8,8 @@
 
 namespace fast_codec
 {
+	typedef std::vector<char> buffer;
+
 	struct Encoder
 	{
 		Encoder()
@@ -20,7 +22,7 @@ namespace fast_codec
 			data_.clear();
 		}
 
-		std::vector<char> data_;
+		buffer data_;
 	};
 
 	void write_byte(Encoder& c, std::uint8_t b);
