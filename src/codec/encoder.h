@@ -8,6 +8,7 @@
 
 namespace fast_codec
 {
+	const std::uint8_t null = 0x80;
 	typedef std::vector<char> buffer;
 
 	struct Encoder
