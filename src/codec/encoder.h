@@ -27,6 +27,7 @@ namespace fast_codec
 	};
 
 	void write_byte(Encoder& c, std::uint8_t b);
+	void write_byte(Encoder& c, std::uint8_t b, std::uint32_t count);
 	void write(Encoder& c, std::uint32_t msg_seq_num);
 }
 

@@ -22,7 +22,7 @@ BOOST_AUTO_TEST_CASE(test_encoder_msg)
 				{ 50, false },
 				{ 5, false },
 				{ 1, false },
-				{ { 1, 1000 }, false },
+				{ { -3, 5 }, false },
 				{ 1, false },
 				{ 0, true },
 				174141414,
