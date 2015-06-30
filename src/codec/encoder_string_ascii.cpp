@@ -3,24 +3,31 @@
 
 namespace fast_codec
 {
-
-	size_t encode_string_ascii(Encoder& e, const char* pStr, size_t length)
+	size_t encode_string_ascii(Encoder& e, const char c)
 	{
-		if(pStr != NULL && length != 0)
+		char str[2];
+		str[0] = c;
+		str[1] = '\0';
+		encode_string_ascii(e, str, sizeof(str));
+	}
+
+	size_t encode_string_ascii(Encoder& e, const char* str, size_t size)
+	{
+		if (str != NULL && size != 0)
 		{
-			for(uint32_t i = 0; i < length - 1; ++i)
+			for (uint32_t i = 0; i < size - 1; ++i)
 			{
-				if(pStr[i+1] == '\0')
+				if(str[i+1] == '\0')
 				{
 					// Stop bit
-					write_byte(e, pStr[i] | 0x80);
+					write_byte(e, str[i] | 0x80);
 					return i+1;				
 				}
-				write_byte(e, pStr[i]);
+				write_byte(e, str[i]);
 			}
 			// Stop bit
-			write_byte(e, pStr[length-1] | 0x80);
-			return length-1;
+			write_byte(e, str[size - 1] | 0x80);
+			return size - 1;
 		}
 		else
 		{
@@ -35,14 +42,14 @@ namespace fast_codec
 		return encode_string_ascii(e, str.c_str(), str.size());
 	}
 
-	size_t encode_string_ascii_optional(Encoder& e, const char* pStr, size_t length)
+	size_t encode_string_ascii_optional(Encoder& e, const char* str, size_t size)
 	{
-		if(pStr == NULL)
+		if(str == NULL)
 		{
 			write_byte(e, 0x80);
 			return 1;
 		}
-		else if(length == 0)
+		else if (size == 0)
 		{
 			write_byte(e, 0x00);
 			write_byte(e, 0x80);
@@ -50,7 +57,7 @@ namespace fast_codec
 		}
 		else
 		{
-			return encode_string_ascii(e, pStr, length);
+			return encode_string_ascii(e, str, size);
 		}
 	}
 
