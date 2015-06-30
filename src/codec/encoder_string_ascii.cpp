@@ -8,7 +8,7 @@ namespace fast_codec
 		char str[2];
 		str[0] = c;
 		str[1] = '\0';
-		encode_string_ascii(e, str, sizeof(str));
+		return encode_string_ascii(e, str, sizeof(str));
 	}
 
 	size_t encode_string_ascii(Encoder& e, const char* str, size_t size)
@@ -46,11 +46,13 @@ namespace fast_codec
 	{
 		if(str == NULL)
 		{
+			// Null
 			write_byte(e, 0x80);
 			return 1;
 		}
 		else if (size == 0)
 		{
+			// Empty string
 			write_byte(e, 0x00);
 			write_byte(e, 0x80);
 			return 2;
