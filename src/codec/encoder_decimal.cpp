@@ -56,7 +56,8 @@ namespace fast_codec
 		}
 		else
 		{
-			return encode_bcd(e, bcd);
+			Decimal d(bcd);
+			return encode_decimal_optional(e, d);
 		}
 	}
 
