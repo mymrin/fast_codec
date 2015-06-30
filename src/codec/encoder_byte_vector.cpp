@@ -1,3 +1,4 @@
+#include <string.h>
 #include "encoder.h"
 #include "encoder_int.h"
 #include "encoder_byte_vector.h"

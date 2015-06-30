@@ -1,6 +1,7 @@
 #ifndef FAST_CODEC_NULLABLE_TYPES_HEADER
 #define FAST_CODEC_NULLABLE_TYPES_HEADER
 
+#include <string>
 #include "decimal.h"
 
 namespace fast_codec
