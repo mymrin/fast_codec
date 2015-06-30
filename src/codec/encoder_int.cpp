@@ -172,6 +172,32 @@ namespace fast_codec
 		return 0;
 	}
 
+	int encode_u32_optional(Encoder& codec, std::uint32_t d)
+	{
+		++d;
+		return encode_u32(codec, d);
+	}
+
+	int encode_i32_optional(Encoder& codec, std::int32_t d)
+	{
+		if (d >= 0)
+			++d;
+		return encode_i32(codec, d);
+	}
+
+	int encode_u64_optional(Encoder& codec, std::uint64_t d)
+	{
+		++d;
+		return encode_u64(codec, d);
+	}
+
+	int encode_i64_optional(Encoder& codec, std::int64_t d)
+	{
+		if (d >= 0)
+			++d;
+		return encode_i64(codec, d);
+	}
+
 	int encode_u32_optional(Encoder& codec, uint32_nt d)
 	{
 		if(d.is_null_)
@@ -181,8 +207,7 @@ namespace fast_codec
 		}
 		else
 		{
-			++d.value_;
-			return encode_u32(codec, d.value_);
+			return encode_u32_optional(codec, d.value_);
 		}
 	}
 
@@ -195,9 +220,7 @@ namespace fast_codec
 		}
 		else
 		{
-			if(d.value_ >= 0)
-				++d.value_;
-			return encode_i32(codec, d.value_);
+			return encode_i32_optional(codec, d.value_);
 		}
 	}
 
@@ -210,8 +233,7 @@ namespace fast_codec
 		}
 		else
 		{
-			++d.value_;
-			return encode_u64(codec, d.value_);
+			return encode_u64_optional(codec, d.value_);
 		}
 	}
 
@@ -224,9 +246,7 @@ namespace fast_codec
 		}
 		else
 		{
-			if(d.value_ >= 0)
-				++d.value_;
-			return encode_i64(codec, d.value_);
+			return encode_i64_optional(codec, d.value_);
 		}
 	}
 

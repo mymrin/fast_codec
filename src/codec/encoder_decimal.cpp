@@ -21,6 +21,19 @@ namespace fast_codec
 		return encode_decimal(e, d);
 	}
 
+	int encode_decimal_optional(Encoder& e, const Decimal& d)
+	{
+		if (d.exponent_ > 0)
+		{
+			Decimal t{ d.exponent_ + 1, d.mantissa_ };
+			return encode_decimal(e, t);
+		}
+		else
+		{
+			return encode_decimal(e, d);
+		}
+	}
+
 	int encode_decimal_optional(Encoder& e, const DecimalNullable& d)
 	{
 		if(d.is_null_)
@@ -28,14 +41,9 @@ namespace fast_codec
 			write_byte(e, 0x80);
 			return 1;
 		}
-		else if(d.value_.exponent_ > 0)
-		{
-			Decimal t {d.value_.exponent_ + 1, d.value_.mantissa_};
-			return encode_decimal(e, t);
-		}
 		else
 		{
-			return encode_decimal(e, d.value_);
+			return encode_decimal_optional(e, d.value_);
 		}
 	}
 
