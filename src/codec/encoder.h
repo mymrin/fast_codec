@@ -23,6 +23,16 @@ namespace fast_codec
 			data_.clear();
 		}
 
+		buffer& Data()
+		{
+			return data_;
+		}
+
+		const buffer& Data() const
+		{
+			return data_;
+		}
+
 		buffer data_;
 	};
 
