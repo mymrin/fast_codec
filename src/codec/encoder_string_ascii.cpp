@@ -70,5 +70,4 @@ namespace fast_codec
 		else
 			return encode_string_ascii_optional(e, str.value_.c_str(), str.value_.size());
 	}
-
 } // namespace

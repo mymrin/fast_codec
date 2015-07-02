@@ -8,6 +8,7 @@ namespace fast_codec
 	struct Encoder;
 	
 	size_t encode_string_utf8(Encoder& e, const std::string& str);
+	size_t encode_string_utf8_optional(Encoder& e, const std::string& str);
 	size_t encode_string_utf8_optional(Encoder& e, const string_nt& str);
 }
 

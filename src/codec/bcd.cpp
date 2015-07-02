@@ -471,5 +471,4 @@ namespace fast_codec
 		intpart = result;
 		pscale = scale;
 	}
-
 } // namespace

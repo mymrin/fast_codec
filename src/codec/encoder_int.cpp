@@ -3,7 +3,6 @@
 
 namespace fast_codec
 {
-
 	int size_of_u32(std::uint32_t d)
 	{
 	   if(d < 0x00000080) return 1; // 128
@@ -87,12 +86,7 @@ namespace fast_codec
 			case 3: write_byte(codec, (d >> 14) & 0x7f);
 			case 2: write_byte(codec, (d >>  7) & 0x7f);
 			case 1: write_byte(codec, (d & 0x7f) | 0x80);
-				{
-	//				int code = set_pmap (codec, tag);
-	//
-	//				if (code < 0)
-	//					return code;
-				}
+				{}
 				return size;
 		}
 		return 0;
@@ -109,12 +103,7 @@ namespace fast_codec
 			case 3: write_byte(codec, (d >> 14) & 0x7f);
 			case 2: write_byte(codec, (d >>  7) & 0x7f);
 			case 1: write_byte(codec, (d & 0x7f) | 0x80);
-				{
-	//				int code = set_pmap (codec, tag);
-	//
-	//				if (code < 0)
-	//					return code;
-				}
+				{}
 				return size;
 		}
 		return 0;
@@ -135,12 +124,7 @@ namespace fast_codec
 			case 3: write_byte(codec, (d >> 14) & 0x7f);
 			case 2: write_byte(codec, (d >>  7) & 0x7f);
 			case 1: write_byte(codec, (d & 0x7f) | 0x80);
-				{
-	//				int code = set_pmap (codec, tag);
-	//
-	//				if (code < 0)
-	//					return code;
-				}
+				{}
 				return size;
 		}
 		return 0;
@@ -161,12 +145,7 @@ namespace fast_codec
 			case 3: write_byte(codec, (d >> 14) & 0x7f);
 			case 2: write_byte(codec, (d >>  7) & 0x7f);
 			case 1: write_byte(codec, (d & 0x7f) | 0x80);
-				{
-	//				int code = set_pmap (codec, tag);
-	//
-	//				if (code < 0)
-	//					return code;
-				}
+				{}
 				return size;
 		}
 		return 0;
@@ -249,5 +228,4 @@ namespace fast_codec
 			return encode_i64_optional(codec, d.value_);
 		}
 	}
-
 } // namespace

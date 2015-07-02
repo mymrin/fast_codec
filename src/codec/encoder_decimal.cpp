@@ -4,7 +4,6 @@
 
 namespace fast_codec
 {
-
 	int encode_decimal(Encoder& e, const Decimal& d)
 	{
 		int size = encode_i32(e, d.exponent_);
@@ -60,5 +59,4 @@ namespace fast_codec
 			return encode_decimal_optional(e, d);
 		}
 	}
-
 } // namespace

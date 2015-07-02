@@ -13,7 +13,7 @@ BOOST_AUTO_TEST_CASE(test_encoder_byte_vector)
 		0x83, 'A', 'B', 'C'
 	};
 	
-	encode_byte_vector(encoder, 0, 0);
+	encode_byte_vector_optional(encoder, 0, 0);
 
 	fast_codec::byte buf[] = "ABC";
 	encode_byte_vector(encoder, buf, sizeof(buf) - 1);
