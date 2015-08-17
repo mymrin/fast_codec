@@ -45,6 +45,9 @@
     <ClInclude Include="encoder_string_utf8.h">
       <Filter>Source Files</Filter>
     </ClInclude>
+    <ClInclude Include="decoder_int.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="encoder_byte_vector.cpp">
@@ -66,6 +69,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="encoder_string_utf8.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="decoder_int.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

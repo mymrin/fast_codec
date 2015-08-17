@@ -13,6 +13,7 @@
   <ItemGroup>
     <ClInclude Include="bcd.h" />
     <ClInclude Include="decimal.h" />
+    <ClInclude Include="decoder_int.h" />
     <ClInclude Include="encoder.h" />
     <ClInclude Include="encoder_byte_vector.h" />
     <ClInclude Include="encoder_decimal.h" />
@@ -24,6 +25,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="bcd.cpp" />
+    <ClCompile Include="decoder_int.cpp" />
     <ClCompile Include="encoder.cpp" />
     <ClCompile Include="encoder_byte_vector.cpp" />
     <ClCompile Include="encoder_decimal.cpp" />
