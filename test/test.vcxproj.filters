@@ -50,5 +50,8 @@
     <ClInclude Include="templates_encoders.h">
       <Filter>Source Files</Filter>
     </ClInclude>
+    <ClInclude Include="tags.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

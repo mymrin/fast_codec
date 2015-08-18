@@ -160,6 +160,7 @@
     <ClCompile Include="test_main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="tags.h" />
     <ClInclude Include="templates.h" />
     <ClInclude Include="templates_encoders.h" />
     <ClInclude Include="test_tools.h" />

@@ -3,15 +3,15 @@
 
 namespace fast_codec
 {
-	size_t encode_string_ascii(Encoder& e, const char c)
+	size_t encode_string_ascii(int, Encoder& e, const char c)
 	{
 		char str[2];
 		str[0] = c;
 		str[1] = '\0';
-		return encode_string_ascii(e, str, sizeof(str));
+		return encode_string_ascii(0, e, str, sizeof(str));
 	}
 
-	size_t encode_string_ascii(Encoder& e, const char* str, size_t size)
+	size_t encode_string_ascii(int, Encoder& e, const char* str, size_t size)
 	{
 		if (str != NULL && size != 0)
 		{
@@ -37,12 +37,12 @@ namespace fast_codec
 		return 0;
 	}
 
-	size_t encode_string_ascii(Encoder& e, const std::string& str)
+	size_t encode_string_ascii(int, Encoder& e, const std::string& str)
 	{
-		return encode_string_ascii(e, str.c_str(), str.size());
+		return encode_string_ascii(0, e, str.c_str(), str.size());
 	}
 
-	size_t encode_string_ascii_optional(Encoder& e, const char* str, size_t size)
+	size_t encode_string_ascii_optional(int, Encoder& e, const char* str, size_t size)
 	{
 		if(str == NULL)
 		{
@@ -59,15 +59,15 @@ namespace fast_codec
 		}
 		else
 		{
-			return encode_string_ascii(e, str, size);
+			return encode_string_ascii(0, e, str, size);
 		}
 	}
 
-	size_t encode_string_ascii_optional(Encoder& e, const string_nt& str)
+	size_t encode_string_ascii_optional(int, Encoder& e, const string_nt& str)
 	{
 		if (str.is_null_)
-			return encode_string_ascii_optional(e, nullptr, 0);
+			return encode_string_ascii_optional(0, e, nullptr, 0);
 		else
-			return encode_string_ascii_optional(e, str.value_.c_str(), str.value_.size());
+			return encode_string_ascii_optional(0, e, str.value_.c_str(), str.value_.size());
 	}
 } // namespace

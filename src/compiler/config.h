@@ -6,6 +6,7 @@
 struct Config
 {
 	std::string templates_ = "templates.xml";
+	std::string tags_h_ = "tags.h";
 	std::string templates_h_ = "templates.h";
 	std::string templates_encoders_h_ ="templates_encoders.h";
 	std::string templates_encoders_cpp_ = "templates_encoders.cpp";

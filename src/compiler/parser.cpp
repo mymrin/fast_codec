@@ -29,7 +29,7 @@ void GenerateOutput(std::ofstream& out, std::ofstream& out_enc_cpp, const std::s
 	const std::string& indent, const std::string& prefix, const std::string& field_name)
 {
 	out << type;
-	out_enc_cpp << indent << func << "(encoder, " << prefix << field_name << ");" << std::endl;
+	out_enc_cpp << indent << func << "(0, encoder, " << prefix << field_name << ");" << std::endl;
 }
 
 template<typename F>
@@ -155,9 +155,12 @@ void Parser::ParseFields(std::ofstream& out, std::ofstream& out_enc_cpp, const p
 				ParseSequence(out, out_enc_cpp, name, f.second.get_child(""), prefix);
 			}
 			else if (f.first == "length")
-			{}
+			{
+				AddToTags(f);
+			}
 			else
 			{
+				AddToTags(f);
 				out << indent;
 				ParseField(f, out, out_enc_cpp, const_value, indent, prefix);
 				out << " " << name << const_value << ";" << std::endl;
@@ -178,7 +181,7 @@ void Parser::ParseSequence(std::ofstream& out, std::ofstream& out_enc_cpp, const
 
 	std::string cycle_param_name = "i" + std::to_string(indent_counter_);
 	out_enc_cpp << indent << "if (!" << prefix << name << "Seq.empty())" << std::endl;
-	out_enc_cpp << indent << indent_ << "fast_codec::encode_u64(encoder, " << prefix << name << "Seq.size());" << std::endl;
+	out_enc_cpp << indent << indent_ << "fast_codec::encode_u64(0, encoder, " << prefix << name << "Seq.size());" << std::endl;
 	out_enc_cpp << indent << "for(const auto& " << cycle_param_name << " : " << prefix << name + "Seq" << ")" << std::endl;
 	out_enc_cpp << indent << "{" << std::endl;
 
@@ -195,6 +198,7 @@ void Parser::ParseSequence(std::ofstream& out, std::ofstream& out_enc_cpp, const
 
 void Parser::GenerateCppSources(const Config& cfg)
 {
+	std::ofstream out_tags_(cfg.tags_h_);
 	std::ofstream out(cfg.templates_h_);
 	std::ofstream out_enc_h(cfg.templates_encoders_h_);
 	std::ofstream out_enc_cpp(cfg.templates_encoders_cpp_);
@@ -210,6 +214,7 @@ void Parser::GenerateCppSources(const Config& cfg)
 	out_enc_h << "#include \"" << cfg.templates_h_ << "\"" << std::endl;
 	out_enc_h << std::endl;
 
+	out_enc_cpp << "#include \"" << cfg.tags_h_ << "\"" << std::endl;
 	out_enc_cpp << "#include \"" << cfg.templates_encoders_h_ << "\"" << std::endl;
 	out_enc_cpp << std::endl;
 
@@ -239,7 +244,7 @@ void Parser::GenerateCppSources(const Config& cfg)
 			out_enc_cpp << indent_ << "fast_codec::write_byte(encoder, 0xC0);" << std::endl << std::endl;
 
 			out_enc_cpp << indent_ << "// Template id encoding" << std::endl;
-			out_enc_cpp << indent_ << "fast_codec::encode_u32(encoder, msg.id);" << std::endl << std::endl;
+			out_enc_cpp << indent_ << "fast_codec::encode_u32(0, encoder, msg.id);" << std::endl << std::endl;
 
 			const auto& fields = t.second.get_child("");
 			ParseFields(out, out_enc_cpp, fields, "msg.");
@@ -249,4 +254,24 @@ void Parser::GenerateCppSources(const Config& cfg)
 			out << std::endl;
 		}
 	}
+
+	out_tags_ << "// tags.h" << std::endl;
+	out_tags_ << std::endl;
+	out_tags_ << "#ifndef FAST_TAGS" << std::endl;
+	out_tags_ << "#define FAST_TAGS" << std::endl;
+	out_tags_ << std::endl;
+	out_tags_ << "enum Tags" << std::endl;
+	out_tags_ << "{" << std::endl;
+	out_tags_ << indent_ << "NullTag" << " = " << "0," << std::endl;
+	for (auto i = tags_.begin(); i != tags_.end(); ++i)
+	{
+		out_tags_ << indent_ << i->first << " = " << i->second;
+		if (i != tags_.end())
+			out_tags_ << "," << std::endl;
+		else
+			out_tags_ << std::endl;
+	}
+	out_tags_ << "};" << std::endl;
+	out_tags_ << std::endl;
+	out_tags_ << "#endif" << std::endl;
 }

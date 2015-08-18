@@ -76,7 +76,7 @@ namespace fast_codec
 		return 10;
 	}
 
-	int encode_u32(Encoder& codec, std::uint32_t d)
+	int encode_u32(int, Encoder& codec, std::uint32_t d)
 	{
 		int size = size_of_u32(d);
 		switch(size)
@@ -92,7 +92,7 @@ namespace fast_codec
 		return 0;
 	}
 
-	int encode_i32(Encoder& codec, std::int32_t d)
+	int encode_i32(int, Encoder& codec, std::int32_t d)
 	{
 		int size = size_of_i32(d);
 		switch (size)
@@ -109,7 +109,7 @@ namespace fast_codec
 		return 0;
 	}
 
-	int encode_u64(Encoder& codec, std::uint64_t d)
+	int encode_u64(int, Encoder& codec, std::uint64_t d)
 	{
 		int size = size_of_u64(d);
 		switch(size)
@@ -130,7 +130,7 @@ namespace fast_codec
 		return 0;
 	}
 
-	int encode_i64(Encoder& codec, std::int64_t d)
+	int encode_i64(int, Encoder& codec, std::int64_t d)
 	{
 		int size = size_of_i64(d);
 		switch(size)
@@ -151,33 +151,47 @@ namespace fast_codec
 		return 0;
 	}
 
-	int encode_u32_optional(Encoder& codec, std::uint32_t d)
+	int encode_u8(int, Encoder& codec, size_t pos, std::uint8_t d)
 	{
-		++d;
-		return encode_u32(codec, d);
+		buffer& data = codec.Data();
+		data[pos] = ((d & 0x7f) | 0x80);
+		return 1;
 	}
 
-	int encode_i32_optional(Encoder& codec, std::int32_t d)
+	int encode_u8_optional(int, Encoder& codec, size_t pos, std::uint8_t d)
+	{
+		++d;
+		encode_u8(0, codec, pos, d);
+		return 1;
+	}
+
+	int encode_u32_optional(int, Encoder& codec, std::uint32_t d)
+	{
+		++d;
+		return encode_u32(0, codec, d);
+	}
+
+	int encode_i32_optional(int, Encoder& codec, std::int32_t d)
 	{
 		if (d >= 0)
 			++d;
-		return encode_i32(codec, d);
+		return encode_i32(0, codec, d);
 	}
 
-	int encode_u64_optional(Encoder& codec, std::uint64_t d)
+	int encode_u64_optional(int, Encoder& codec, std::uint64_t d)
 	{
 		++d;
-		return encode_u64(codec, d);
+		return encode_u64(0, codec, d);
 	}
 
-	int encode_i64_optional(Encoder& codec, std::int64_t d)
+	int encode_i64_optional(int, Encoder& codec, std::int64_t d)
 	{
 		if (d >= 0)
 			++d;
-		return encode_i64(codec, d);
+		return encode_i64(0, codec, d);
 	}
 
-	int encode_u32_optional(Encoder& codec, uint32_nt d)
+	int encode_u32_optional(int, Encoder& codec, uint32_nt d)
 	{
 		if(d.is_null_)
 		{
@@ -186,11 +200,11 @@ namespace fast_codec
 		}
 		else
 		{
-			return encode_u32_optional(codec, d.value_);
+			return encode_u32_optional(0, codec, d.value_);
 		}
 	}
 
-	int encode_i32_optional(Encoder& codec, int32_nt d)
+	int encode_i32_optional(int, Encoder& codec, int32_nt d)
 	{
 		if(d.is_null_)
 		{
@@ -199,11 +213,11 @@ namespace fast_codec
 		}
 		else
 		{
-			return encode_i32_optional(codec, d.value_);
+			return encode_i32_optional(0, codec, d.value_);
 		}
 	}
 
-	int encode_u64_optional(Encoder& codec, uint64_nt d)
+	int encode_u64_optional(int, Encoder& codec, uint64_nt d)
 	{
 		if(d.is_null_)
 		{
@@ -212,11 +226,11 @@ namespace fast_codec
 		}
 		else
 		{
-			return encode_u64_optional(codec, d.value_);
+			return encode_u64_optional(0, codec, d.value_);
 		}
 	}
 
-	int encode_i64_optional(Encoder& codec, int64_nt d)
+	int encode_i64_optional(int, Encoder& codec, int64_nt d)
 	{
 		if(d.is_null_)
 		{
@@ -225,7 +239,7 @@ namespace fast_codec
 		}
 		else
 		{
-			return encode_i64_optional(codec, d.value_);
+			return encode_i64_optional(0, codec, d.value_);
 		}
 	}
 } // namespace
