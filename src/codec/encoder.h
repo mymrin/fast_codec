@@ -1,6 +1,7 @@
 #ifndef FAST_CODEC_ENCODER_HEADER
 #define FAST_CODEC_ENCODER_HEADER
 
+#include <stddef.h>
 #include <cstdint>
 #include <vector>
 
