@@ -5,13 +5,13 @@
 struct DefaultIncrementalRefreshMessage
 {
    static const std::uint32_t id = 1;
-   static const std::uint32_t dictionary = 1;
 
    // static const std::string ApplVerID = "9";
    // static const std::string MessageType = "X";
    // static const std::string SenderCompID = "MOEX";
    std::uint32_t MsgSeqNum;
    std::uint64_t SendingTime;
+   fast_codec::uint32_nt LastFragment;
 
    struct MDEntries
    {
@@ -36,6 +36,8 @@ struct DefaultIncrementalRefreshMessage
       fast_codec::DecimalNullable LastPx;
       fast_codec::int32_nt MDFlags;
       fast_codec::string_nt Currency;
+      fast_codec::uint64_nt Revision;
+      fast_codec::string_nt OrderSide;
    };
    std::vector<MDEntries> MDEntriesSeq;
 };
@@ -43,13 +45,13 @@ struct DefaultIncrementalRefreshMessage
 struct DefaultSnapshotMessage
 {
    static const std::uint32_t id = 2;
-   static const std::uint32_t dictionary = 1;
 
    // static const std::string ApplVerID = "9";
    // static const std::string MessageType = "W";
    // static const std::string SenderCompID = "MOEX";
    std::uint32_t MsgSeqNum;
    std::uint64_t SendingTime;
+   fast_codec::uint32_nt LastFragment;
    std::uint32_t RptSeq;
    std::uint32_t TotNumReports;
    std::uint32_t LastMsgSeqNumProcessed;
@@ -74,6 +76,7 @@ struct DefaultSnapshotMessage
       fast_codec::int32_nt TrdType;
       fast_codec::int32_nt MDFlags;
       fast_codec::string_nt Currency;
+      fast_codec::string_nt OrderSide;
    };
    std::vector<MDEntries> MDEntriesSeq;
 };
@@ -81,7 +84,6 @@ struct DefaultSnapshotMessage
 struct SecurityDefinition
 {
    static const std::uint32_t id = 3;
-   static const std::uint32_t dictionary = 1;
 
    // static const std::string ApplVerID = "9";
    // static const std::string MessageType = "d";
@@ -163,7 +165,6 @@ struct SecurityDefinition
 struct SecurityDefinitionUpdateReport
 {
    static const std::uint32_t id = 4;
-   static const std::uint32_t dictionary = 1;
 
    // static const std::string ApplVerID = "9";
    // static const std::string MessageType = "BP";
@@ -180,7 +181,6 @@ struct SecurityDefinitionUpdateReport
 struct SecurityStatus
 {
    static const std::uint32_t id = 5;
-   static const std::uint32_t dictionary = 1;
 
    // static const std::string ApplVerID = "9";
    // static const std::string MessageType = "f";
@@ -201,7 +201,6 @@ struct SecurityStatus
 struct Heartbeat
 {
    static const std::uint32_t id = 6;
-   static const std::uint32_t dictionary = 1;
 
    // static const std::string ApplVerID = "9";
    // static const std::string MessageType = "0";
@@ -213,7 +212,6 @@ struct Heartbeat
 struct SequenceReset
 {
    static const std::uint32_t id = 7;
-   static const std::uint32_t dictionary = 1;
 
    // static const std::string ApplVerID = "9";
    // static const std::string MessageType = "4";
@@ -226,7 +224,6 @@ struct SequenceReset
 struct TradingSessionStatus
 {
    static const std::uint32_t id = 8;
-   static const std::uint32_t dictionary = 1;
 
    // static const std::string ApplVerID = "9";
    // static const std::string MessageType = "h";
@@ -248,13 +245,13 @@ struct TradingSessionStatus
 struct News
 {
    static const std::uint32_t id = 9;
-   static const std::uint32_t dictionary = 1;
 
    // static const std::string ApplVerID = "9";
    // static const std::string MessageType = "B";
    // static const std::string SenderCompID = "MOEX";
    std::uint32_t MsgSeqNum;
    std::uint64_t SendingTime;
+   fast_codec::uint32_nt LastFragment;
    fast_codec::string_nt NewsId;
    fast_codec::uint64_nt OrigTime;
    fast_codec::string_nt LanguageCode;
@@ -273,7 +270,6 @@ struct News
 struct Logon
 {
    static const std::uint32_t id = 1000;
-   static const std::uint32_t dictionary = 2;
 
    // static const std::string ApplVerID = "9";
    // static const std::string MessageType = "A";
@@ -285,7 +281,6 @@ struct Logon
 struct Logout
 {
    static const std::uint32_t id = 1001;
-   static const std::uint32_t dictionary = 2;
 
    // static const std::string ApplVerID = "9";
    // static const std::string MessageType = "5";

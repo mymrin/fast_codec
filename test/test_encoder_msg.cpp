@@ -10,6 +10,7 @@ BOOST_AUTO_TEST_CASE(test_encoder_msg)
 	{
 		1000,
 		20150624174141414,
+		{ 1, false },
 		{
 			{
 				0,
@@ -31,7 +32,9 @@ BOOST_AUTO_TEST_CASE(test_encoder_msg)
 				{ 0, false },
 				{ { 0, 0 }, true },
 				{ 0, true },
-				{ "", true }
+				{ "", true },
+				{ 123456789, false},
+				{ "1", false }
 			}
 		}
 	};

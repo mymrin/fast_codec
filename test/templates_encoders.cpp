@@ -15,6 +15,7 @@ void Encode(fast_codec::Encoder& encoder, const DefaultIncrementalRefreshMessage
 
    fast_codec::encode_u32(0, encoder, msg.MsgSeqNum);
    fast_codec::encode_u64(0, encoder, msg.SendingTime);
+   fast_codec::encode_u32_optional(0, encoder, msg.LastFragment);
    if (!msg.MDEntriesSeq.empty())
       fast_codec::encode_u64(0, encoder, msg.MDEntriesSeq.size());
    for(const auto& i0 : msg.MDEntriesSeq)
@@ -39,6 +40,8 @@ void Encode(fast_codec::Encoder& encoder, const DefaultIncrementalRefreshMessage
       fast_codec::encode_decimal_optional(0, encoder, i0.LastPx);
       fast_codec::encode_i32_optional(0, encoder, i0.MDFlags);
       fast_codec::encode_string_ascii_optional(0, encoder, i0.Currency);
+      fast_codec::encode_u64_optional(0, encoder, i0.Revision);
+      fast_codec::encode_string_ascii_optional(0, encoder, i0.OrderSide);
    }
 }
 
@@ -56,6 +59,7 @@ void Encode(fast_codec::Encoder& encoder, const DefaultSnapshotMessage& msg)
 
    fast_codec::encode_u32(0, encoder, msg.MsgSeqNum);
    fast_codec::encode_u64(0, encoder, msg.SendingTime);
+   fast_codec::encode_u32_optional(0, encoder, msg.LastFragment);
    fast_codec::encode_u32(0, encoder, msg.RptSeq);
    fast_codec::encode_u32(0, encoder, msg.TotNumReports);
    fast_codec::encode_u32(0, encoder, msg.LastMsgSeqNumProcessed);
@@ -80,6 +84,7 @@ void Encode(fast_codec::Encoder& encoder, const DefaultSnapshotMessage& msg)
       fast_codec::encode_i32_optional(0, encoder, i0.TrdType);
       fast_codec::encode_i32_optional(0, encoder, i0.MDFlags);
       fast_codec::encode_string_ascii_optional(0, encoder, i0.Currency);
+      fast_codec::encode_string_ascii_optional(0, encoder, i0.OrderSide);
    }
 }
 
@@ -283,6 +288,7 @@ void Encode(fast_codec::Encoder& encoder, const News& msg)
 
    fast_codec::encode_u32(0, encoder, msg.MsgSeqNum);
    fast_codec::encode_u64(0, encoder, msg.SendingTime);
+   fast_codec::encode_u32_optional(0, encoder, msg.LastFragment);
    fast_codec::encode_string_ascii_optional(0, encoder, msg.NewsId);
    fast_codec::encode_u64_optional(0, encoder, msg.OrigTime);
    fast_codec::encode_string_ascii_optional(0, encoder, msg.LanguageCode);

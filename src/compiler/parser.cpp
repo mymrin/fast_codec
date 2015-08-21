@@ -227,7 +227,6 @@ void Parser::GenerateCppSources(const Config& cfg)
 			out << "struct " << name << std::endl;
 			out << "{" << std::endl;
 			out << indent_ << "static const std::uint32_t id = " << t.second.get_child("<xmlattr>.id").data() << ";" << std::endl;
-			out << indent_ << "static const std::uint32_t dictionary = " << t.second.get_child("<xmlattr>.dictionary").data() << ";" << std::endl;
 			out << std::endl;
 
 			out_enc_h << "void Encode(fast_codec::Encoder& encoder, const " << name << "& msg);" << std::endl;
