@@ -1,6 +1,6 @@
 <templates xmlns="http://www.fixprotocol.org/ns/fast/td/1.1">
 
-    <template name="DefaultIncrementalRefreshMessage" id="1" dictionary="1">
+    <template name="DefaultIncrementalRefreshMessage" id="1">
         <string name="ApplVerID" id="1128">
             <constant value="9"/>
         </string>
@@ -12,6 +12,7 @@
         </string>
         <uInt32 name="MsgSeqNum" id="34"/>
         <uInt64 name="SendingTime" id="52"/>
+		<uInt32 name="LastFragment" id="893" presence="optional"/>
         <sequence name="MDEntries">
             <length name="NoMDEntries" id="268"/>
             <uInt32 name="MDUpdateAction" id="279"/>
@@ -37,10 +38,12 @@
             <decimal name="LastPx" id="31" presence="optional"/>
             <int32 name="MDFlags" id="20017" presence="optional"/>
             <string name="Currency" id="15" presence="optional"/>
+            <uInt64 name="Revision" id="20018" presence="optional"/>
+            <string name="OrderSide" id="10504" presence="optional"/>
         </sequence>
     </template>
 
-    <template name="DefaultSnapshotMessage" id="2" dictionary="1">
+    <template name="DefaultSnapshotMessage" id="2">
         <string name="ApplVerID" id="1128">
             <constant value="9"/>
         </string>
@@ -52,6 +55,7 @@
         </string>
         <uInt32 name="MsgSeqNum" id="34"/>
         <uInt64 name="SendingTime" id="52"/>
+		<uInt32 name="LastFragment" id="893" presence="optional"/>
         <uInt32 name="RptSeq" id="83"/>
         <uInt32 name="TotNumReports" id="911"/>
         <uInt32 name="LastMsgSeqNumProcessed" id="369"/>
@@ -77,10 +81,11 @@
             <int32 name="TrdType" id="828" presence="optional"/>
             <int32 name="MDFlags" id="20017" presence="optional"/>
             <string name="Currency" id="15" presence="optional"/>
+            <string name="OrderSide" id="10504" presence="optional"/>
         </sequence>
     </template>
 
-    <template name="SecurityDefinition" id="3" dictionary="1">
+    <template name="SecurityDefinition" id="3">
         <string name="ApplVerID" id="1128">
             <constant value="9"/>
         </string>
@@ -163,7 +168,7 @@
         <uInt32 name="MaturityTime" id="1079" presence="optional"/>
     </template>
 
-    <template name="SecurityDefinitionUpdateReport" id="4" dictionary="1">
+    <template name="SecurityDefinitionUpdateReport" id="4">
         <string name="ApplVerID" id="1128">
             <constant value="9"/>
         </string>
@@ -185,7 +190,7 @@
         <decimal name="TheorPriceLimit" id="20007" presence="optional"/>
     </template>
 
-    <template name="SecurityStatus" id="5" dictionary="1">
+    <template name="SecurityStatus" id="5">
         <string name="ApplVerID" id="1128">
             <constant value="9"/>
         </string>
@@ -211,7 +216,7 @@
         <decimal name="InitialMarginSyntetic" id="20001" presence="optional"/>
     </template>
 
-    <template name="Heartbeat" id="6" dictionary="1">
+    <template name="Heartbeat" id="6">
         <string name="ApplVerID" id="1128">
             <constant value="9"/>
         </string>
@@ -225,7 +230,7 @@
         <uInt64 name="SendingTime" id="52"/>
     </template>
 
-    <template name="SequenceReset" id="7" dictionary="1">
+    <template name="SequenceReset" id="7">
         <string name="ApplVerID" id="1128">
             <constant value="9"/>
         </string>
@@ -242,7 +247,7 @@
         <uInt32 name="NewSeqNo" id="36"/>
     </template>
 
-    <template name="TradingSessionStatus" id="8" dictionary="1">
+    <template name="TradingSessionStatus" id="8">
         <string name="ApplVerID" id="1128">
             <constant value="9"/>
         </string>
@@ -268,7 +273,7 @@
         <int32 name="TradSesEvent" id="1368" presence="optional"/>
     </template>
 
-    <template name="News" id="9" dictionary="1">
+    <template name="News" id="9">
         <string name="ApplVerID" id="1128">
             <constant value="9"/>
         </string>
@@ -280,6 +285,7 @@
         </string>
         <uInt32 name="MsgSeqNum" id="34"/>
         <uInt64 name="SendingTime" id="52"/>
+		<uInt32 name="LastFragment" id="893" presence="optional"/>
         <string name="NewsId" id="1472" presence="optional"/>
         <uInt64 name="OrigTime" id="42" presence="optional"/>
         <string name="LanguageCode" id="1474" presence="optional"/>
@@ -295,7 +301,7 @@
         </sequence>
     </template>
 
-    <template name="Logon" id="1000" dictionary="2">
+    <template name="Logon" id="1000">
         <string name="ApplVerID" id="1128">
             <constant value="9"/>
         </string>
@@ -309,7 +315,7 @@
         <uInt64 name="SendingTime" id="52"/>
     </template>
 
-    <template name="Logout" id="1001" dictionary="2">
+    <template name="Logout" id="1001">
         <string name="ApplVerID" id="1128">
             <constant value="9"/>
         </string>

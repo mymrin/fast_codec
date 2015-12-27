@@ -5,15 +5,15 @@
 
 namespace fast_codec
 {
-	size_t encode_byte_vector(Encoder& e, const byte* buf, size_t size, bool is_optional)
+	size_t encode_byte_vector(int, Encoder& e, const byte* buf, size_t size, bool is_optional)
 	{
 		size_t preamble_size = 0;
 		if (buf != 0 && size != 0)
 		{
 			if (is_optional)
-				preamble_size = encode_u64_optional(e, size);
+				preamble_size = encode_u64_optional(0, e, size);
 			else
-				preamble_size = encode_u64(e, size);
+				preamble_size = encode_u64(0, e, size);
 			size_t n = e.Data().size();
 			e.data_.resize(n + size);
 			memcpy(&e.data_[n], buf, size);
@@ -21,12 +21,12 @@ namespace fast_codec
 		return preamble_size + size;
 	}
 
-	size_t encode_byte_vector(Encoder& e, const byte* buf, size_t size)
+	size_t encode_byte_vector(int, Encoder& e, const byte* buf, size_t size)
 	{
-		return encode_byte_vector(e, buf, size, false);
+		return encode_byte_vector(0, e, buf, size, false);
 	}
 
-	size_t encode_byte_vector_optional(Encoder& e, const byte* buf, size_t size)
+	size_t encode_byte_vector_optional(int, Encoder& e, const byte* buf, size_t size)
 	{
 		if (buf == NULL)
 		{
@@ -42,7 +42,7 @@ namespace fast_codec
 		}
 		else
 		{
-			return encode_byte_vector(e, buf, size, true);
+			return encode_byte_vector(0, e, buf, size, true);
 		}
 	}
 } // namespace

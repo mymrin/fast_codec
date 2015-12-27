@@ -13,10 +13,10 @@ BOOST_AUTO_TEST_CASE(test_encoder_byte_vector)
 		0x83, 'A', 'B', 'C'
 	};
 	
-	encode_byte_vector_optional(encoder, 0, 0);
+	encode_byte_vector_optional(0, encoder, 0, 0);
 
 	fast_codec::byte buf[] = "ABC";
-	encode_byte_vector(encoder, buf, sizeof(buf) - 1);
+	encode_byte_vector(0, encoder, buf, sizeof(buf) - 1);
 
 	Check(encoder, sTestEtalon);
 	encoder.Reset();
@@ -39,7 +39,7 @@ BOOST_AUTO_TEST_CASE(perf_test_encoder_byte_vector)
 		for(int i = 0; i < cCycleCount; ++i)
 		{
 			s[0] = i % 27;
-			encode_byte_vector(encoder, s, sizeof(s));
+			encode_byte_vector(0, encoder, s, sizeof(s));
 		}
 	}
 }

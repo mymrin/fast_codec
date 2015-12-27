@@ -4,17 +4,17 @@
 
 namespace fast_codec
 {
-	size_t encode_string_utf8(Encoder& e, const std::string& str)
+	size_t encode_string_utf8(int, Encoder& e, const std::string& str)
 	{
-		return encode_byte_vector(e, reinterpret_cast<const byte*>(str.c_str()), str.size(), false);
+		return encode_byte_vector(0, e, reinterpret_cast<const byte*>(str.c_str()), str.size(), false);
 	}
 
-	size_t encode_string_utf8_optional(Encoder& e, const std::string& str)
+	size_t encode_string_utf8_optional(int, Encoder& e, const std::string& str)
 	{
-		return encode_byte_vector(e, reinterpret_cast<const byte*>(str.c_str()), str.size(), true);
+		return encode_byte_vector(0, e, reinterpret_cast<const byte*>(str.c_str()), str.size(), true);
 	}
 
-	size_t encode_string_utf8_optional(Encoder& e, const string_nt& str)
+	size_t encode_string_utf8_optional(int, Encoder& e, const string_nt& str)
 	{
 		if (str.is_null_ == NULL)
 		{
@@ -23,7 +23,7 @@ namespace fast_codec
 		}
 		else
 		{
-			return encode_byte_vector(e, reinterpret_cast<const byte*>(str.value_.c_str()), str.value_.size(), true);
+			return encode_byte_vector(0, e, reinterpret_cast<const byte*>(str.value_.c_str()), str.value_.size(), true);
 		}
 	}
 } // namespace fast_codec

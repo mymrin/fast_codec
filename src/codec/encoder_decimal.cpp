@@ -4,36 +4,36 @@
 
 namespace fast_codec
 {
-	int encode_decimal(Encoder& e, const Decimal& d)
+	int encode_decimal(int, Encoder& e, const Decimal& d)
 	{
-		int size = encode_i32(e, d.exponent_);
-		size += encode_i64(e, d.mantissa_);
+		int size = encode_i32(0, e, d.exponent_);
+		size += encode_i64(0, e, d.mantissa_);
 		return size;	
 	}
 
-	int encode_bcd(Encoder& e, const uint8_t* bcd)
+	int encode_bcd(int, Encoder& e, const uint8_t* bcd)
 	{
 		if(!bcd)
 			return 0;
 
 		Decimal d(bcd);
-		return encode_decimal(e, d);
+		return encode_decimal(0, e, d);
 	}
 
-	int encode_decimal_optional(Encoder& e, const Decimal& d)
+	int encode_decimal_optional(int, Encoder& e, const Decimal& d)
 	{
 		if (d.exponent_ > 0)
 		{
 			Decimal t{ d.exponent_ + 1, d.mantissa_ };
-			return encode_decimal(e, t);
+			return encode_decimal(0, e, t);
 		}
 		else
 		{
-			return encode_decimal(e, d);
+			return encode_decimal(0, e, d);
 		}
 	}
 
-	int encode_decimal_optional(Encoder& e, const DecimalNullable& d)
+	int encode_decimal_optional(int, Encoder& e, const DecimalNullable& d)
 	{
 		if(d.is_null_)
 		{
@@ -42,11 +42,11 @@ namespace fast_codec
 		}
 		else
 		{
-			return encode_decimal_optional(e, d.value_);
+			return encode_decimal_optional(0, e, d.value_);
 		}
 	}
 
-	int encode_bcd_optional(Encoder& e, const uint8_t* bcd)
+	int encode_bcd_optional(int, Encoder& e, const uint8_t* bcd)
 	{
 		if(bcd == NULL)
 		{
@@ -56,7 +56,7 @@ namespace fast_codec
 		else
 		{
 			Decimal d(bcd);
-			return encode_decimal_optional(e, d);
+			return encode_decimal_optional(0, e, d);
 		}
 	}
 } // namespace

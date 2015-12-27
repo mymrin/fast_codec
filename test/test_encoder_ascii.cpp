@@ -17,15 +17,15 @@ BOOST_AUTO_TEST_CASE(test_encoder_ascii)
 	};
 	
 	char s1[1] = { '\0' };
-	encode_string_ascii(encoder, s1, sizeof(s1));
-	encode_string_ascii(encoder, s1, 0);
-	encode_string_ascii(encoder, 0, 0);
+	encode_string_ascii(0, encoder, s1, sizeof(s1));
+	encode_string_ascii(0, encoder, s1, 0);
+	encode_string_ascii(0, encoder, 0, 0);
 
 	char s2[2] = { 'a', 'b' };
-	encode_string_ascii(encoder, s2, sizeof(s2));
+	encode_string_ascii(0, encoder, s2, sizeof(s2));
 
 	char s3[] = "ABCDE";
-	encode_string_ascii(encoder, s3, sizeof(s3));
+	encode_string_ascii(0, encoder, s3, sizeof(s3));
 
 	Check(encoder, sTestEtalon);
 	encoder.Reset();
@@ -46,7 +46,7 @@ BOOST_AUTO_TEST_CASE(perf_test_encoder_ascii)
 		for(int i = 0; i < cCycleCount; ++i)
 		{
 			s[0] = i % 27;
-			encode_string_ascii(encoder, s, sizeof(s));
+			encode_string_ascii(0, encoder, s, sizeof(s));
 		}
 	}
 }

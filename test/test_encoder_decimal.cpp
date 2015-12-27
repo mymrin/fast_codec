@@ -13,9 +13,9 @@ BOOST_AUTO_TEST_CASE(test_encoder_decimal)
 		0x00, 0xc0, 0x05, 0x71, 0x3d, 0xa8,
 		0xc0, 0x7a, 0x0e, 0x42, 0xd8
 	};
-	fast_codec::encode_decimal(encoder, fast_codec::Decimal{ 0, 0 });
-	fast_codec::encode_decimal(encoder, fast_codec::Decimal{ 64, 12345000 });
-	fast_codec::encode_decimal(encoder, fast_codec::Decimal{ -64, -12345000 });
+	fast_codec::encode_decimal(0, encoder, fast_codec::Decimal{ 0, 0 });
+	fast_codec::encode_decimal(0, encoder, fast_codec::Decimal{ 64, 12345000 });
+	fast_codec::encode_decimal(0, encoder, fast_codec::Decimal{ -64, -12345000 });
 	Check(encoder, sTestDecimalEtalon);
 	encoder.Reset();
 }
@@ -32,7 +32,7 @@ BOOST_AUTO_TEST_CASE(test_encoder_bcd)
 	uint8_t bcd_val[sizeof(uint16_t) + BCD_SIZEOF(BCD_MAKE_TYPE(16, 5))];
 	val.ToBCD<16, 5>(bcd_val);
 
-	encode_bcd(encoder, bcd_val);
+	encode_bcd(0, encoder, bcd_val);
 	Check(encoder, sTestDecimalEtalon);
 	encoder.Reset();
 }
@@ -55,7 +55,7 @@ BOOST_AUTO_TEST_CASE(perf_test_encoder_bcd)
 	{
 		TimeCounterGuard t("encode_bcd", cCycleCount);
 		for(int i = 0; i < cCycleCount; ++i)
-			encode_bcd(encoder, reinterpret_cast<const uint8_t*>(&bcd[i]));
+			encode_bcd(0, encoder, reinterpret_cast<const uint8_t*>(&bcd[i]));
 	}
 
 	delete[] bcd;
