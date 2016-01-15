@@ -1,4 +1,3 @@
-
 #include <boost/test/unit_test.hpp>
 #include "test_tools.h"
 #include "codec/encoder.h"
@@ -115,7 +114,7 @@ BOOST_AUTO_TEST_CASE(test_encoder_int)
 BOOST_AUTO_TEST_CASE(perf_test_encoder_int)
 {
 #ifdef NDEBUG
-	const int cCycleCount = 1000000;
+	const int cCycleCount = 10000000;
 #else
 	const int cCycleCount = 10;
 #endif

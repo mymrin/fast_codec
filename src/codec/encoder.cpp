@@ -5,7 +5,7 @@ namespace fast_codec
 {
 	void write_byte(int, Encoder& c, std::uint8_t b)
 	{
-		c.data_.push_back(b);
+		write_byte(c, b);
 	}
 
 	void write_byte(Encoder& c, std::uint8_t b)

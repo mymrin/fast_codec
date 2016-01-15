@@ -4,11 +4,19 @@
 #include <cstdint>
 #include <chrono>
 
+#define ANSI_COLOR_RED     "\x1b[31m"
+#define ANSI_COLOR_GREEN   "\x1b[32m"
+#define ANSI_COLOR_YELLOW  "\x1b[33m"
+#define ANSI_COLOR_BLUE    "\x1b[34m"
+#define ANSI_COLOR_MAGENTA "\x1b[35m"
+#define ANSI_COLOR_CYAN    "\x1b[36m"
+#define ANSI_COLOR_RESET   "\x1b[0m"
+
 struct TimeCounter
 {
 	std::string name_;
-	std::chrono::steady_clock::time_point startTime_;
-	std::uint64_t sumTime_;
+	std::chrono::steady_clock::time_point start_time_;
+	std::uint64_t sum_time_;
     
 	TimeCounter(std::string name) : name_(name)
     {
@@ -17,23 +25,23 @@ struct TimeCounter
 
 	void Reset()
 	{
-		sumTime_ = 0;
+		sum_time_ = 0;
 	}
 
 	void Start()
 	{
-		startTime_ = std::chrono::steady_clock::now();
+		start_time_ = std::chrono::steady_clock::now();
 	}
 
 	void Stop()
 	{
-		auto dur = std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::steady_clock::now() - startTime_);
-		sumTime_ += static_cast<std::uint64_t>(dur.count());			
+		auto dur = std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::steady_clock::now() - start_time_);
+		sum_time_ += static_cast<std::uint64_t>(dur.count());			
 	}
 
 	void Print(std::uint32_t count) const
 	{
-		printf("%s: %.3f mcs\n", name_.c_str(), double(sumTime_)/count);
+		printf("%s: " ANSI_COLOR_GREEN "%.3f" ANSI_COLOR_RESET " mcs, count: %d, total: %lld mcs\n", name_.c_str(), double(sum_time_) / count, count, sum_time_);
 	}
 };
 
