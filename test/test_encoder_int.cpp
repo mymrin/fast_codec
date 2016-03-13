@@ -118,20 +118,33 @@ BOOST_AUTO_TEST_CASE(perf_test_encoder_int)
 #else
 	const int cCycleCount = 10;
 #endif
-
 	fast_codec::Encoder encoder;
 	encoder.data_.reserve(6*cCycleCount);
 	{
 		TimeCounterGuard t("encode_u32", cCycleCount);
 		uint32_t d = 3294967295;
 		for(uint32_t i = 0; i < cCycleCount; ++i)
-			encode_u32(0, encoder, d+i);
+			encode_u32(0, encoder, d + i);
 	}
+	encoder.Reset();
+	{
+		TimeCounterGuard t("encode_i32", cCycleCount);
+		int32_t d = -134217728;
+		for (int32_t i = 0; i < cCycleCount; ++i)
+			encode_u32(0, encoder, d - i);
+	}
+	encoder.Reset();
 	{
 		TimeCounterGuard t("encode_u64", cCycleCount);
-		encoder.Reset();
 		uint64_t v = 0x8000000000000000ULL;
 		for(uint32_t j = 0; j < cCycleCount; ++j)
-			encode_u64(0, encoder, v+j);
+			encode_u64(0, encoder, v + j);
+	}
+	encoder.Reset();
+	{
+		TimeCounterGuard t("encode_i64", cCycleCount);
+		int64_t v = 0x7fffffffffffffffLL;
+		for (uint32_t j = 0; j < cCycleCount; ++j)
+			encode_i64(0, encoder, v - j);
 	}
 }
