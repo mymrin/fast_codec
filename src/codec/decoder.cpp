@@ -17,4 +17,11 @@ namespace fast_codec
 		}
 		return FC_UNEXPECTED_END_OF_BUFFER_END;
 	}
+
+	std::uint8_t get_byte(Decoder& c)
+	{
+		if (c.position_ < c.data_.size())
+			return c.data_[c.position_];
+		return 0;
+	}
 }

@@ -173,41 +173,113 @@ namespace fast_codec
 
 	int decode_u32_optional(int, Decoder& codec, std::uint32_t& d)
 	{
-		return FC_UNEXPECTED_END_OF_BUFFER_END;
+		if (get_byte(codec) == 0x80)
+		{
+			codec.AddPosition();
+			return FC_NULL_VALUE;
+		}
+		int error = decode_u32(0, codec, d);
+		if (!error) 
+			--d;
+		return error;
 	}
 
 	int decode_i32_optional(int, Decoder& codec, std::int32_t& d)
 	{
-		return FC_UNEXPECTED_END_OF_BUFFER_END;
+		if (get_byte(codec) == 0x80)
+		{
+			codec.AddPosition();
+			return FC_NULL_VALUE;
+		}
+		int error = decode_i32(0, codec, d);
+		if (!error && d > 0)
+			--d;
+		return error;
 	}
 
 	int decode_u64_optional(int, Decoder& codec, std::uint64_t& d)
 	{
-		return FC_UNEXPECTED_END_OF_BUFFER_END;
+		if (get_byte(codec) == 0x80)
+		{
+			codec.AddPosition();
+			return FC_NULL_VALUE;
+		}
+		int error = decode_u64(0, codec, d);
+		if (!error)
+			--d;
+		return error;
 	}
 
 	int decode_i64_optional(int, Decoder& codec, std::int64_t& d)
 	{
-		return FC_UNEXPECTED_END_OF_BUFFER_END;
+		if (get_byte(codec) == 0x80)
+		{
+			codec.AddPosition();
+			return FC_NULL_VALUE;
+		}
+		int error = decode_i64(0, codec, d);
+		if (!error && d > 0)
+			--d;
+		return error;
 	}
 
 	int decode_u32_optional(int, Decoder& codec, uint32_nt& d)
 	{
-		return FC_UNEXPECTED_END_OF_BUFFER_END;
+		if (get_byte(codec) == 0x80)
+		{
+			d.is_null_ = true;
+			codec.AddPosition();
+			return FC_NULL_VALUE;
+		}
+		d.is_null_ = false;
+		int error = decode_u32(0, codec, d.value_);
+		if (!error)
+			--d.value_;
+		return error;
 	}
 
 	int decode_i32_optional(int, Decoder& codec, int32_nt& d)
 	{
-		return FC_UNEXPECTED_END_OF_BUFFER_END;
+		if (get_byte(codec) == 0x80)
+		{
+			d.is_null_ = true;
+			codec.AddPosition();
+			return FC_NULL_VALUE;
+		}
+		d.is_null_ = false;
+		int error = decode_i32(0, codec, d.value_);
+		if (!error && d.value_ > 0)
+			--d.value_;
+		return error;
 	}
 
 	int decode_u64_optional(int, Decoder& codec, uint64_nt& d)
 	{
-		return FC_UNEXPECTED_END_OF_BUFFER_END;
+		if (get_byte(codec) == 0x80)
+		{
+			d.is_null_ = true;
+			codec.AddPosition();
+			return FC_NULL_VALUE;
+		}
+		d.is_null_ = false;
+		int error = decode_u64(0, codec, d.value_);
+		if (!error)
+			--d.value_;
+		return error;
 	}
 
 	int decode_i64_optional(int, Decoder& codec, int64_nt& d)
 	{
-		return FC_UNEXPECTED_END_OF_BUFFER_END;
+		if (get_byte(codec) == 0x80)
+		{
+			d.is_null_ = true;
+			codec.AddPosition();
+			return FC_NULL_VALUE;
+		}
+		d.is_null_ = false;
+		int error = decode_i64(0, codec, d.value_);
+		if (!error && d.value_ > 0)
+			--d.value_;
+		return error;
 	}
 } // namespace
