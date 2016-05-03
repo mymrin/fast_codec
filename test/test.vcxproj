@@ -152,6 +152,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="templates_encoders.cpp" />
+    <ClCompile Include="test_decoder_decimal.cpp" />
     <ClCompile Include="test_decoder_int.cpp" />
     <ClCompile Include="test_encoder_ascii.cpp" />
     <ClCompile Include="test_encoder_byte_vector.cpp" />

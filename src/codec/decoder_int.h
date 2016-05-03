@@ -6,6 +6,7 @@ namespace fast_codec
 {
 	struct Decoder;
 
+	int decode_i8(int, Decoder& codec, std::int8_t& d);
 	int decode_u32(int, Decoder& codec, std::uint32_t& d);
 	int decode_i32(int, Decoder& codec, std::int32_t& d);
 	int decode_u64(int, Decoder& codec, std::uint64_t& d);

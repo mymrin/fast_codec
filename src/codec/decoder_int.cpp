@@ -7,6 +7,47 @@ namespace fast_codec
 	const std::uint8_t sign_bit = std::uint8_t('\x40');
 	const std::uint8_t data_bits = std::uint8_t('\x7F');
 
+	int decode_i8(int, Decoder& codec, std::int8_t& d)
+	{
+		std::uint8_t b;
+		std::uint8_t first_byte;
+		d = 0;
+		if (read_byte(codec, b) == 0)
+		{
+				first_byte = b;
+				if (b & sign_bit)
+					d = std::int8_t(0xFF);
+				d <<= 7;
+				d |= (b & data_bits);
+				if (b & stop_bit)
+					return 0;
+		}
+		else
+		{
+			return FC_UNEXPECTED_END_OF_BUFFER_END;
+		}
+		if (read_byte(codec, b) == 0)
+		{
+			if (first_byte & sign_bit)
+			{
+				if ((first_byte & data_bits) >> 4 != 0x00000001) // 0x01 - 0000 0001
+					return FC_INTEGER_OVERFLOW;
+			}
+			else
+			{
+				if ((first_byte & data_bits) >> 4 != 0)
+					return FC_INTEGER_OVERFLOW;
+			}
+			d <<= 7;
+			d |= (b & data_bits);
+			if (b & stop_bit)
+				return 0;
+			else
+				return FC_INTEGER_DO_NOT_HAVE_STOP_BIT;
+		}
+		return FC_UNEXPECTED_END_OF_BUFFER_END;
+	}
+
 	int decode_u32(int, Decoder& codec, std::uint32_t& d)
 	{
 		std::uint8_t b;

@@ -54,6 +54,12 @@
     <ClInclude Include="common_defs.h">
       <Filter>Source Files</Filter>
     </ClInclude>
+    <ClInclude Include="decoder_decimal.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="decoder_byte_vector.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="encoder_byte_vector.cpp">
@@ -81,6 +87,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="decoder.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="decoder_decimal.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="decoder_byte_vector.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

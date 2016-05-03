@@ -8,7 +8,7 @@ namespace fast_codec
 	{
 		int size = encode_i32(0, e, d.exponent_);
 		size += encode_i64(0, e, d.mantissa_);
-		return size;	
+		return size;
 	}
 
 	int encode_bcd(int, Encoder& e, const uint8_t* bcd)

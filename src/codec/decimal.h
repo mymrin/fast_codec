@@ -11,6 +11,7 @@ namespace fast_codec
 		exponent_t exponent_;
 		mantissa_t mantissa_;
 
+		Decimal() {}
 		explicit Decimal(const uint8_t* bcd)
 		{
 			bcd_to_decimal(bcd, mantissa_, exponent_);
@@ -25,6 +26,11 @@ namespace fast_codec
 			uint16_t& typ = reinterpret_cast<uint16_t&>(bcd);
 			typ = BCD_MAKE_TYPE(N, M);
 			return decimal_to_bcd(bcd + sizeof(uint16_t), BCD_MAKE_TYPE(N, M), mantissa_, -exponent_);
+		}
+
+		bool operator==(const Decimal l)
+		{
+			return exponent_ == l.exponent_ && mantissa_ == l.mantissa_;
 		}
 	};
 }

@@ -15,6 +15,8 @@
     <ClInclude Include="common_defs.h" />
     <ClInclude Include="decimal.h" />
     <ClInclude Include="decoder.h" />
+    <ClInclude Include="decoder_byte_vector.h" />
+    <ClInclude Include="decoder_decimal.h" />
     <ClInclude Include="decoder_int.h" />
     <ClInclude Include="encoder.h" />
     <ClInclude Include="encoder_byte_vector.h" />
@@ -28,6 +30,8 @@
   <ItemGroup>
     <ClCompile Include="bcd.cpp" />
     <ClCompile Include="decoder.cpp" />
+    <ClCompile Include="decoder_byte_vector.cpp" />
+    <ClCompile Include="decoder_decimal.cpp" />
     <ClCompile Include="decoder_int.cpp" />
     <ClCompile Include="encoder.cpp" />
     <ClCompile Include="encoder_byte_vector.cpp" />
