@@ -17,17 +17,17 @@ namespace fast_codec
 	{
 	   if(d < 0)
 	   {
-		  if(d >= 0xffffffc0) return 1; // -64
-		  if(d >= 0xffffe000) return 2; // -8192
-		  if(d >= 0xfff00000) return 3; // -1048576
-		  if(d >= 0xf8000000) return 4; // -134217728
+		  if(d >= 0xffffffc0L) return 1; // -64
+		  if(d >= 0xffffe000L) return 2; // -8192
+		  if(d >= 0xfff00000L) return 3; // -1048576
+		  if(d >= 0xf8000000L) return 4; // -134217728
 	   }
 	   else
 	   {
-		  if(d < 0x00000040) return 1; // 64
-		  if(d < 0x00002000) return 2; // 8192
-		  if(d < 0x00100000) return 3; // 1048576
-		  if(d < 0x08000000) return 4; // 134217728
+		  if(d < 0x00000040L) return 1; // 64
+		  if(d < 0x00002000L) return 2; // 8192
+		  if(d < 0x00100000L) return 3; // 1048576
+		  if(d < 0x08000000L) return 4; // 134217728
 	   }
 	   return 5;
 	}

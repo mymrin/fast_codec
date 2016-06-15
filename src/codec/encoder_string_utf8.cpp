@@ -16,7 +16,7 @@ namespace fast_codec
 
 	size_t encode_string_utf8_optional(int, Encoder& e, const string_nt& str)
 	{
-		if (str.is_null_ == NULL)
+		if (str.is_null_ == true)
 		{
 			write_byte(e, 0x80);
 			return 1;

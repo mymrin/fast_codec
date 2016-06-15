@@ -24,7 +24,7 @@ namespace fast_codec
 	{
 		if (d.exponent_ > 0)
 		{
-			Decimal t{ d.exponent_ + 1, d.mantissa_ };
+			Decimal t{ exponent_t(d.exponent_ + exponent_t(1)), d.mantissa_ };
 			return encode_decimal(0, e, t);
 		}
 		else
