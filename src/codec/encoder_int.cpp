@@ -51,15 +51,17 @@ namespace fast_codec
 	{
 		if(d < 0)
 		{
-			if(d >= 0xffffffffffffffc0LL) return 1; // -64
-			if(d >= 0xffffffffffffe000LL) return 2; // -8192
-			if(d >= 0xfffffffffff00000LL) return 3; // -1048576
-			if(d >= 0xfffffffff8000000LL) return 4; // -124317728
-			if(d >= 0xfffffffc00000000LL) return 5;
-			if(d >= 0xfffffe0000000000LL) return 6;
-			if(d >= 0xffff000000000000LL) return 7;
-			if(d >= 0xff80000000000000LL) return 8;
-			if(d >= 0xc000000000000000LL) return 9;
+			std::int64_t absd = -d;
+			if((d << 1) == 0) return 10;
+			if(absd <= 0x0000000000000040LL) return 1; // 64
+			if(absd <= 0x0000000000002000LL) return 2; // 8192
+			if(absd <= 0x0000000000100000LL) return 3; // 1048576
+			if(absd <= 0x0000000008000000LL) return 4; // 124317728
+			if(absd <= 0x0000000400000000LL) return 5;
+			if(absd <= 0x0000020000000000LL) return 6;
+			if(absd <= 0x0001000000000000LL) return 7;
+			if(absd <= 0x0080000000000000LL) return 8;
+			if(absd <= 0x4000000000000000LL) return 9;
 		}
 		else
 		{
