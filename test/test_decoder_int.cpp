@@ -185,13 +185,13 @@ BOOST_AUTO_TEST_CASE(perf_test_decoder_int)
 #endif
 	fast_codec::Encoder encoder;
 	fast_codec::Decoder decoder;
-	encoder.data_.reserve(6 * cCycleCount);
+	encoder.data_.reserve(10 * cCycleCount);
 	{
 		uint32_t d = 3294967295;
 		for (uint32_t i = 0; i < cCycleCount; ++i)
 			encode_u32(0, encoder, d + i);
 		decoder.data_ = encoder.data_;
-		TimeCounterGuard t("decode_warmup", cCycleCount);
+		TimeCounterGuard t("decode_int_warmup", cCycleCount);
 		std::uint32_t v = 0;
 		for (uint32_t i = 0; i < cCycleCount; ++i)
 			decode_u32(0, decoder, v);

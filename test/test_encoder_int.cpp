@@ -119,7 +119,7 @@ BOOST_AUTO_TEST_CASE(perf_test_encoder_int)
 	const int cCycleCount = 10;
 #endif
 	fast_codec::Encoder encoder;
-	encoder.data_.reserve(6*cCycleCount);
+	encoder.data_.reserve(10 * cCycleCount);
 	{
 		TimeCounterGuard t("encode_u32", cCycleCount);
 		uint32_t d = 3294967295;

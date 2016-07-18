@@ -13,7 +13,7 @@ namespace fast_codec
 
 	size_t encode_string_ascii(int, Encoder& e, const char* str, size_t size)
 	{
-		if (str != NULL && size != 0)
+		if (str != nullptr && size != 0)
 		{
 			for (uint32_t i = 0; i < size - 1; ++i)
 			{
@@ -21,7 +21,7 @@ namespace fast_codec
 				{
 					// Stop bit
 					write_byte(e, str[i] | 0x80);
-					return i+1;				
+					return i + 1;				
 				}
 				write_byte(e, str[i]);
 			}
@@ -44,9 +44,9 @@ namespace fast_codec
 
 	size_t encode_string_ascii_optional(int, Encoder& e, const char* str, size_t size)
 	{
-		if(str == NULL)
+		if(str == nullptr)
 		{
-			// Null
+			// Null value
 			write_byte(e, 0x80);
 			return 1;
 		}
@@ -57,10 +57,7 @@ namespace fast_codec
 			write_byte(e, 0x80);
 			return 2;
 		}
-		else
-		{
-			return encode_string_ascii(0, e, str, size);
-		}
+		return encode_string_ascii(0, e, str, size);
 	}
 
 	size_t encode_string_ascii_optional(int, Encoder& e, const string_nt& str)

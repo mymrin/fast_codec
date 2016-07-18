@@ -46,7 +46,7 @@ BOOST_AUTO_TEST_CASE(perf_test_encoder_bcd)
 #endif
 
 	fast_codec::Encoder encoder;
-	encoder.data_.reserve(10*cCycleCount);
+	encoder.data_.reserve(10 * cCycleCount);
 
 	fast_codec::BCD<16, 5>* bcd = new fast_codec::BCD<16, 5>[cCycleCount];
 	for(int i = 0; i < cCycleCount; ++i)
@@ -56,6 +56,7 @@ BOOST_AUTO_TEST_CASE(perf_test_encoder_bcd)
 		for(int i = 0; i < cCycleCount; ++i)
 			encode_bcd(0, encoder, reinterpret_cast<const uint8_t*>(&bcd[i]));
 	}
+	encoder.Reset();
 	fast_codec::Decimal* d = new fast_codec::Decimal[cCycleCount];
 	for (int i = 0; i < cCycleCount; ++i)
 		d[i] = fast_codec::Decimal(5, 8099531223045 + i);

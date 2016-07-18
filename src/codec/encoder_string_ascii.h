@@ -10,8 +10,8 @@ namespace fast_codec
 	size_t encode_string_ascii(int, Encoder& e, const char* str, size_t size);
 	size_t encode_string_ascii(int, Encoder& e, const std::string& str);
 
-	// pStr == NULL is a FAST NULL value
-	// pStr != NULL and length == 0 is FAST ASCII empty string
+	// pStr == nullptr encoded as FAST NULL value
+	// pStr != nullptr and length == 0 encoded as FAST ASCII empty string
 	size_t encode_string_ascii_optional(int, Encoder& e, const char* str, size_t size);
 	size_t encode_string_ascii_optional(int, Encoder& e, const string_nt& str);
 }

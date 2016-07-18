@@ -36,7 +36,7 @@ BOOST_AUTO_TEST_CASE(perf_test_decoder_decimal)
 
 	fast_codec::Encoder encoder;
 	fast_codec::Decoder decoder;
-	encoder.data_.reserve(6 * cCycleCount);
+	encoder.data_.reserve(10 * cCycleCount);
 	for (uint32_t i = 0; i < cCycleCount; ++i)
 	{
 		fast_codec::Decimal d(5, 8099531223045 + i);

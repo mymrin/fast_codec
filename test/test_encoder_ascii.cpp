@@ -34,12 +34,13 @@ BOOST_AUTO_TEST_CASE(test_encoder_ascii)
 BOOST_AUTO_TEST_CASE(perf_test_encoder_ascii)
 {
 #ifdef NDEBUG
-	const int cCycleCount = 1000000;
+	const int cCycleCount = 5000000;
 #else
 	const int cCycleCount = 10;
 #endif
 
 	fast_codec::Encoder encoder;
+	encoder.data_.reserve(20 * cCycleCount);
 	char s[] = "TEST_STRING";
 	{
 		TimeCounterGuard t("encode_ascii (11 bytes)", cCycleCount);

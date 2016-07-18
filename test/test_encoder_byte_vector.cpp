@@ -25,12 +25,13 @@ BOOST_AUTO_TEST_CASE(test_encoder_byte_vector)
 BOOST_AUTO_TEST_CASE(perf_test_encoder_byte_vector)
 {
 #ifdef NDEBUG
-	const int cCycleCount = 1000000;
+	const int cCycleCount = 5000000;
 #else
 	const int cCycleCount = 10;
 #endif
 
 	fast_codec::Encoder encoder;
+	encoder.data_.reserve(200 * cCycleCount);
 	fast_codec::byte s[] = "TEST_STRING_TEST_STRING_TEST_STRING_TEST_STRING_TEST_STRING"
 		"TEST_STRING_TEST_STRING_TEST_STRING_TEST_STRING_TEST_STRING"
 		"TEST_STRING_TEST_STRING_TEST_STRING_TEST_STRING_TEST_STRING";

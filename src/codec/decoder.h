@@ -6,6 +6,9 @@
 #define FC_INTEGER_OVERFLOW 2
 #define FC_INTEGER_DO_NOT_HAVE_STOP_BIT 3
 #define FC_NULL_VALUE 4
+#define FC_INCORRECT_PARAMETER 5
+#define FC_BUFFER_OVERFLOW 6
+#define FC_EMPTY_VALUE 7
 
 namespace fast_codec
 {

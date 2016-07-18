@@ -60,6 +60,12 @@
     <ClInclude Include="decoder_byte_vector.h">
       <Filter>Source Files</Filter>
     </ClInclude>
+    <ClInclude Include="decoder_string_utf8.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="decoder_string_ascii.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="encoder_byte_vector.cpp">
@@ -93,6 +99,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="decoder_byte_vector.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="decoder_string_utf8.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="decoder_string_ascii.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
