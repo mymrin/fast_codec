@@ -40,7 +40,7 @@ BOOST_AUTO_TEST_CASE(test_encoder_msg)
 	};
 	Encode(encoder, msg_inc);
 	std::ofstream of_inc("DefaultIncrementalRefreshMessage.fast", std::ios::out | std::ios::binary);
-	of_inc.write(&encoder.data_[0], encoder.data_.size());
+	of_inc.write(reinterpret_cast<const char*>(&encoder.data_[0]), encoder.data_.size());
 
 	// Performance test
 #ifdef NDEBUG
@@ -70,7 +70,7 @@ BOOST_AUTO_TEST_CASE(test_encoder_msg)
 	encoder.Reset();
 	Encode(encoder, msg_inc100);
 	std::ofstream of_inc100("DefaultIncrementalRefreshMessage100.fast", std::ios::out | std::ios::binary);
-	of_inc100.write(&encoder.data_[0], encoder.data_.size());
+	of_inc100.write(reinterpret_cast<const char*>(&encoder.data_[0]), encoder.data_.size());
 
 	// Performance test of encoding DefaultIncrementalRefreshMessage with 100 MDEntries
 #ifdef NDEBUG

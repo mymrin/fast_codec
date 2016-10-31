@@ -1,17 +1,10 @@
 #ifndef FAST_CODEC_ENCODER_HEADER
 #define FAST_CODEC_ENCODER_HEADER
 
-#include <stddef.h>
-#include <cstdint>
-#include <vector>
-
-#define FAST_MAX_MSG_SIZE 65507
+#include "common_defs.h"
 
 namespace fast_codec
 {
-	const std::uint8_t null = 0x80;
-	typedef std::vector<char> buffer;
-
 	struct Encoder
 	{
 		Encoder()

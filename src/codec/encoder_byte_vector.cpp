@@ -8,7 +8,7 @@ namespace fast_codec
 	size_t encode_byte_vector(int, Encoder& e, const byte* buf, size_t size, bool is_optional)
 	{
 		size_t preamble_size = 0;
-		if (buf != 0 && size != 0)
+		if (buf != nullptr && size != 0)
 		{
 			if (is_optional)
 				preamble_size = encode_u64_optional(0, e, size);
@@ -28,7 +28,7 @@ namespace fast_codec
 
 	size_t encode_byte_vector_optional(int, Encoder& e, const byte* buf, size_t size)
 	{
-		if (buf == NULL)
+		if (buf == nullptr)
 		{
 			// Null
 			write_byte(e, 0x80);

@@ -36,6 +36,18 @@
     <ClCompile Include="test_encoder_msg.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="test_decoder_int.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="test_decoder_decimal.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="test_decoder_byte_vector.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="test_decoder_ascii.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="time_counter.h">
